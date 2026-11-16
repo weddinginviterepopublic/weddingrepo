@@ -112,7 +112,14 @@
     -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 4%, #000 96%, transparent 100%); mask-image: linear-gradient(90deg, transparent 0, #000 4%, #000 96%, transparent 100%); }
   .cover > .who { position: absolute; z-index: 2; top: 15.5svh; left: 0; right: 0; margin: 0 auto; max-width: 18ch; font-size: clamp(1.7rem, 7vw, 2.4rem); line-height: 1.12; }
   .cover > .sp.c1 { width: min(82vw, 27rem); translate: 0 -40%; }
-  .cover > .seal { position: absolute; z-index: 2; left: 50%; bottom: 3.5svh; translate: -50% 0; opacity: 1; animation: pulse 2.4s ease-in-out infinite; transition: opacity .5s; }
+  /* Sharp text: no transforms on the button itself (they soften lettering); the gold ring does the pulsing. */
+  .cover > .seal { position: absolute; z-index: 2; left: 0; right: 0; bottom: 4svh; margin: 0 auto; width: max-content; padding: .9rem 2.3rem; opacity: 1;
+    font-family: var(--display); font-weight: 600; font-size: 1.05rem; letter-spacing: .24em; text-indent: .24em; text-transform: uppercase; color: var(--rose-deep);
+    background: linear-gradient(180deg, #fffdf8, #f6e8d6); border: 1.5px solid var(--gold); border-radius: 999px; animation: none; transition: opacity .5s;
+    box-shadow: inset 0 0 0 3px #fffaf2, inset 0 0 0 4px rgba(201,164,92,.6), 0 10px 26px rgba(120,70,60,.24); -webkit-font-smoothing: antialiased; }
+  .cover > .seal::after { content: ""; position: absolute; inset: -5px; border: 1.5px solid var(--gold); border-radius: inherit; opacity: 0; animation: ring 2.4s ease-out infinite; pointer-events: none; }
+  @keyframes ring { 0% { opacity: .75; transform: scale(1); } 100% { opacity: 0; transform: scale(1.18, 1.5); } }
+  @media (prefers-reduced-motion: reduce) { .cover > .seal::after { animation: none; } }
   .cover.playing > .seal { opacity: 0; }
   .opened .cover > .intro { opacity: 0; }
   .seal { font: inherit; font-size: 1.1rem; font-weight: 600; letter-spacing: .04em; color: #fff; background: var(--rose); border: 0; border-radius: 999px; padding: .6rem 1.4rem; cursor: pointer; box-shadow: 0 6px 18px rgba(168,80,95,.35); opacity: 0; }
