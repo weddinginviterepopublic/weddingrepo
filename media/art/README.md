@@ -1,7 +1,7 @@
-Rose artwork for the frame goes here.
+Artwork used on the frame and doors.
 
-Upload 3 or 4 images:
-- painted or watercolour roses (a branch, a corner spray, or a bouquet)
-- PNG with a transparent background is best; a plain white or cream background also works
-- at least 1500 px on the long side
-- only images you are allowed to use (bought clipart, public-domain art, or your own)
+- blossom-branch.webp, blossom-left.webp, blossom-right.webp: cut out from the blossom paintings
+- roses.jpg: the rose photo behind the footer
+
+To change the look, replace a file with another image of the same name.
+Only use images you are allowed to use.
