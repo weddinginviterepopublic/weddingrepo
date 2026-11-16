@@ -32,11 +32,9 @@
   /* ---------- The page: one centred column, flowering vines down both edges, soft window light ---------- */
   .page { position: relative; max-width: 34rem; margin: 0 auto; overflow: hidden; box-shadow: 0 0 60px rgba(120, 70, 60, .25);
     background: var(--vine-l) left top / var(--vine-w) auto repeat-y, var(--vine-r) right top / var(--vine-w) auto repeat-y,
-      linear-gradient(118deg, rgba(255,255,255,0) 0 18%, rgba(255,255,255,.55) 24% 30%, rgba(255,255,255,0) 36% 52%, rgba(255,255,255,.4) 58% 62%, rgba(255,255,255,0) 68%) 0 0 / 100% 900px,
-      linear-gradient(180deg, var(--cream), var(--blush) 50%, var(--cream)) 0 0 / 100% 1800px; }
+      linear-gradient(180deg, var(--cream) 0%, #f8eadf 50%, var(--cream) 100%); }
   section, .hero, .countdown, footer { padding-inline: calc(var(--vine-w) + 1.1rem); text-align: center; }
-  section { padding-block: 5.5rem 3.2rem; }
-  section::before { content: ""; display: block; height: 10px; margin: 0 auto 3rem; width: 70%; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='10'%3E%3Cpath d='M0 5C20 0 40 0 60 5C80 10 100 10 120 5' fill='none' stroke='%23dcb9b4' stroke-width='1'/%3E%3C/svg%3E") center / auto 10px repeat-x; }
+  section { padding-block: 3.6rem 3.2rem; }
   h2 { font-family: var(--script); font-weight: 400; font-size: clamp(2.5rem, 10vw, 3.3rem); line-height: 1.15; margin: 0 0 1.2rem; color: var(--rose); }
   h2::before { content: ""; display: block; width: 32px; height: 32px; margin: 0 auto .5rem; background: center / contain no-repeat; }
   h2::after { content: ""; display: block; width: 180px; max-width: 70%; height: 16px; margin: .5rem auto 0; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='16'%3E%3Cpath d='M0 8H72M108 8H180' stroke='%23d3a3a8'/%3E%3Cpath d='M90 14C80 7 82 2 86 2C88 2 90 4 90 5C90 4 92 2 94 2C98 2 100 7 90 14Z' fill='%23b9606f'/%3E%3C/svg%3E") center / contain no-repeat; }
@@ -78,12 +76,12 @@
   .cover > .sp.c1 { width: min(96vw, 31rem); left: -3%; top: 0; translate: 0 -24%; }
   .opened .cover > .sp { opacity: 0; }
   section { position: relative; z-index: 0; }
-  section::after { content: ""; position: absolute; z-index: -1; top: 0; left: 0; width: 50%; aspect-ratio: 372 / 366; background: url("media/art/blossom-left.webp") left top / contain no-repeat; opacity: .9; pointer-events: none; }
-  section:nth-of-type(even)::after { left: auto; right: 0; aspect-ratio: 364 / 366; background-image: url("media/art/blossom-right.webp"); background-position: right top; }
+  #events::after, #rsvp::after { content: ""; position: absolute; z-index: -1; top: 1.2rem; width: 46%; background: right top / contain no-repeat; opacity: .92; pointer-events: none; }
+  #events::after { right: 0; aspect-ratio: 364 / 366; background-image: url("media/art/blossom-right.webp"); }
+  #rsvp::after { left: 0; aspect-ratio: 372 / 366; background-image: url("media/art/blossom-left.webp"); background-position: left top; }
   .day { position: relative; }
   footer { position: relative; z-index: 0; }
-  footer::after { content: ""; position: absolute; z-index: -1; left: 0; right: 0; bottom: 0; height: 19rem; background: url("media/art/roses.jpg") left bottom / cover no-repeat;
-    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 55%); mask-image: linear-gradient(180deg, transparent 0%, #000 55%); pointer-events: none; }
+  footer::after { content: ""; position: absolute; z-index: -1; right: -18%; bottom: -1.5rem; width: 92%; aspect-ratio: 736 / 538; background: url("media/art/blossom-branch.webp") center / contain no-repeat; scale: -1 -1; pointer-events: none; }
   @keyframes sway { 50% { transform: rotate(1.2deg) translateY(-2px); } }
 
   /* ---------- Cover: cream doors that swing open ---------- */
@@ -230,7 +228,7 @@
   .music { position: fixed; right: .8rem; bottom: .8rem; z-index: 20; font: inherit; font-size: 1rem; font-weight: 600; color: #fff; background: var(--rose); border: 0; border-radius: 999px; padding: .55rem 1.1rem; cursor: pointer; box-shadow: 0 6px 18px rgba(120,70,60,.35); }
   .music[aria-pressed=true] { background: var(--rose-deep); }
 
-  footer { padding-block: 1rem 17rem; }
+  footer { padding-block: 1rem 13rem; }
   footer .sig { font-family: var(--script); font-size: 2.5rem; line-height: 1.2; color: var(--rose); margin: 0 0 .3rem; }
   footer p { margin: 0; color: var(--muted); }
   @media (min-width: 600px) { :root { --vine-w: 30px; } }
