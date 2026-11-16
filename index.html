@@ -72,11 +72,16 @@
   .arch .sp.tl { background-image: url("media/art/blossom-branch.webp"); aspect-ratio: 736 / 538; width: 122%; left: -34%; top: 0; translate: 0 -58%; }
   .arch .sp.br { background-image: url("media/art/blossom-branch.webp"); aspect-ratio: 736 / 538; width: 112%; right: -36%; bottom: 0; translate: 0 62%; scale: -1 -1; }
   .arch .sp.tr, .arch .sp.bl { display: none; }
+  /* Branches sit behind the invitation panel, so they never cover the words. */
+  .arch .sp { z-index: 0; }
+  .arch .cap, .arch .crest, .hero-text { z-index: 1; }
+  .arch .cap { position: relative; }
   .cover > .sp { z-index: 1; background-image: url("media/art/blossom-branch.webp"); aspect-ratio: 736 / 538; transition: opacity .9s ease, transform 1.6s ease; }
   .cover > .sp.c1 { width: min(96vw, 31rem); left: -3%; top: 0; translate: 0 -24%; }
   .opened .cover > .sp { opacity: 0; }
   section { position: relative; z-index: 0; }
-  #events::after, #rsvp::after { content: ""; position: absolute; z-index: -1; top: 1.2rem; width: 46%; background: right top / contain no-repeat; opacity: .92; pointer-events: none; }
+  #events::after, #rsvp::after { content: ""; position: absolute; z-index: -1; top: 0; width: 46%; background: right top / contain no-repeat; opacity: .85; pointer-events: none;
+    -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 30%, #000 80%, transparent 100%); mask-image: linear-gradient(180deg, transparent 0, #000 30%, #000 80%, transparent 100%); }
   #events::after { right: 0; aspect-ratio: 364 / 366; background-image: url("media/art/blossom-right.webp"); }
   #rsvp::after { left: 0; aspect-ratio: 372 / 366; background-image: url("media/art/blossom-left.webp"); background-position: left top; }
   .day { position: relative; }
