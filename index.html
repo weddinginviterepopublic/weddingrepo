@@ -100,6 +100,16 @@
   .cover > p, .cover > button { position: relative; z-index: 1; margin: 0; transition: opacity .6s, transform .6s; }
   .cover .who { font-family: var(--script); font-size: clamp(2.3rem, 10vw, 3.4rem); line-height: 1.15; max-width: 11ch; color: var(--rose); text-shadow: 0 0 18px #fff, 0 0 8px #fff; }
   .cover .hint { font-style: italic; color: var(--ink); text-shadow: 0 0 12px #fff, 0 0 6px #fff; }
+  .cover { display: block; padding: 0; background: #f0e4d7; transition: opacity 1.2s ease; }
+  .intro { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  @media (max-aspect-ratio: 1/1) {
+    .cover > button.seal { bottom: 9svh; }
+    .intro { inset: auto 0; top: 46%; translate: 0 -50%; height: auto; aspect-ratio: 4 / 5;
+      -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 9%, #000 91%, transparent 100%); mask-image: linear-gradient(180deg, transparent 0, #000 9%, #000 91%, transparent 100%); }
+  }
+  .cover > .seal { position: absolute; left: 50%; bottom: 4svh; translate: -50% 0; opacity: 1; animation: pulse 2.4s ease-in-out infinite; transition: opacity .5s; }
+  .cover.playing > .seal { opacity: 0; }
+  .opened .cover { opacity: 0; pointer-events: none; }
   .seal { font: inherit; font-size: 1.1rem; font-weight: 600; letter-spacing: .04em; color: #fff; background: var(--rose); border: 0; border-radius: 999px; padding: .6rem 1.4rem; cursor: pointer; box-shadow: 0 6px 18px rgba(168,80,95,.35); opacity: 0; }
   .ready .seal { opacity: 1; animation: pulse 2.4s ease-in-out infinite; }
   .stage { position: absolute; z-index: 1; left: 50%; bottom: 0; width: min(100vw, 30rem, 60svh); translate: -50% 0; overflow: visible; pointer-events: none; }
@@ -229,25 +239,8 @@
 <body>
 
 <div class="cover" id="cover">
-  <div class="leaf l" aria-hidden="true"></div>
-  <div class="leaf r" aria-hidden="true"></div>
-  <span class="sp c1" aria-hidden="true"></span>
-  <p class="who">The wedding of Mahisa and Karteek</p>
-  <button class="seal" id="seal" type="button">Tap to untie the knot</button>
-  <svg class="stage" viewBox="0 0 390 500" aria-hidden="true">
-    <g class="fig g"><g id="pull-g"><g class="bob"><image href="media/art/groom.webp" x="26" y="195" width="103" height="290"/></g></g></g>
-    <g class="fig b"><g id="pull-b"><g class="bob"><image href="media/art/bride.webp" x="222" y="235" width="165" height="250"/></g></g></g>
-    <g id="ribbon" fill="none" stroke-linecap="round">
-      <path id="tail-g" stroke="#8a3c4b" stroke-width="7"/><path id="tail-g2" stroke="#d98a98" stroke-width="2"/>
-      <path id="tail-b" stroke="#8a3c4b" stroke-width="7"/><path id="tail-b2" stroke="#d98a98" stroke-width="2"/>
-      <g id="bow">
-        <path d="M195 292C172 258 136 266 148 292C136 316 174 322 195 292Z" fill="#a8505f" stroke="#8a3c4b" stroke-width="1.5"/>
-        <path d="M195 292C218 258 254 266 242 292C254 316 216 322 195 292Z" fill="#a8505f" stroke="#8a3c4b" stroke-width="1.5"/>
-        <path d="M186 289C172 276 158 278 160 290M204 289C218 276 232 278 230 290" stroke="#d98a98" stroke-width="2"/>
-        <rect x="187" y="283" width="16" height="18" rx="5" fill="#8a3c4b" stroke="#c9a45c" stroke-width="1.2"/>
-      </g>
-    </g>
-  </svg>
+  <video class="intro" id="intro" src="media/art/opening.mp4" poster="media/art/opening-poster.jpg" muted playsinline preload="auto" aria-hidden="true"></video>
+  <button class="seal" id="seal" type="button">Tap to open</button>
 </div>
 
 <div class="page">
@@ -403,7 +396,6 @@
 </main>
 
 <footer>
-  <div class="couple" id="couple" aria-hidden="true"><img src="media/art/groom.webp" alt="" class="cg"><img src="media/art/bride.webp" alt="" class="cb"></div>
   <p class="sig">Mahisa Sanofer and Karteek Edumudi</p>
   <p>18 and 19 December 2026, Visakhapatnam</p>
 </footer>
@@ -508,65 +500,27 @@
     })(t0);
   }
 
-  // ---- Cover: the two of us walk in, take the ends of the ribbon, and pull the knot open ----
+  // ---- Cover: tap, the opening clip plays (the two of us untie the ribbon), then the page appears ----
   (function () {
-    var cover = document.getElementById("cover"), bow = document.getElementById("bow"), ribbon = document.getElementById("ribbon");
-    var pg = document.getElementById("pull-g"), pb = document.getElementById("pull-b");
-    var K = [195, 292], HG = [117, 339], HB = [302, 350], DG = [172, 252], DB = [216, 334];   // knot, hands, loose ends
-    var started = false;
-    function mix(a, b, t) { return a + (b - a) * t; }
-    function ease(t) { return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; }
-    // grab: 0 = ends hang loose (one up, one down), 1 = ends in their hands. pull: 0 = slack, 1 = taut. dx: how far each has stepped back.
-    function draw(grab, pull, dx) {
-      var eg = [mix(DG[0], HG[0] - dx, grab), mix(DG[1], HG[1], grab)], eb = [mix(DB[0], HB[0] + dx, grab), mix(DB[1], HB[1], grab)];
-      var sag = (1 - pull) * 26 * grab;
-      var dg = "M" + K[0] + " " + K[1] + "C" + mix(188, mix(K[0], eg[0], 0.33), pull) + " " + mix(250, mix(K[1], eg[1], 0.33), pull) + " " + mix(K[0], eg[0], 0.66) + " " + (mix(K[1], eg[1], 0.66) + sag - (1 - grab) * 6) + " " + eg[0] + " " + eg[1];
-      var db = "M" + K[0] + " " + K[1] + "C" + mix(202, mix(K[0], eb[0], 0.33), pull) + " " + mix(334, mix(K[1], eb[1], 0.33), pull) + " " + mix(K[0], eb[0], 0.66) + " " + (mix(K[1], eb[1], 0.66) + sag + (1 - grab) * 6) + " " + eb[0] + " " + eb[1];
-      ["tail-g", "tail-g2"].forEach(function (id) { document.getElementById(id).setAttribute("d", dg); });
-      ["tail-b", "tail-b2"].forEach(function (id) { document.getElementById(id).setAttribute("d", db); });
-      pg.setAttribute("transform", "translate(" + (-dx) + " 0)"); pb.setAttribute("transform", "translate(" + dx + " 0)");
-    }
-    function run(ms, step, done) {
-      var t0 = performance.now();
-      (function f(now) { var t = Math.min(1, (now - t0) / ms); step(t); if (t < 1) requestAnimationFrame(f); else if (done) done(); })(t0);
-    }
+    var cover = document.getElementById("cover"), clip = document.getElementById("intro"), started = false, shown = false;
     function reveal() {
+      if (shown) return; shown = true;
       document.body.classList.add("opened");
       document.documentElement.classList.remove("locked");
       petals();
-      setTimeout(function () { cover.hidden = true; }, calm ? 0 : 2800);
-    }
-    function open() {
-      if (started) return; started = true;
-      music.wanted = true; if (music.start) music.start();
-      cover.classList.remove("ready");
-      if (calm) { reveal(); return; }
-      document.querySelectorAll(".stage .fig").forEach(function (f) { f.style.animation = "none"; });
-      run(950, function (t) {                       // pull: step back, ribbon goes taut, the bow slips undone
-        var e = ease(t); draw(1, e, 30 * e);
-        bow.setAttribute("transform", "translate(195 292) scale(" + (1 - 0.9 * e) + ") translate(-195 -292)");
-      }, function () {
-        ribbon.style.transition = "opacity .35s"; ribbon.style.opacity = 0;
-        cover.classList.add("walking"); reveal();
-        run(2300, function (t) { var d = 30 + 330 * t * t; pg.setAttribute("transform", "translate(" + (-d) + " 0)"); pb.setAttribute("transform", "translate(" + d + " 0)"); });
-      });
+      setTimeout(function () { cover.hidden = true; clip.pause(); }, calm ? 0 : 1400);
     }
     document.documentElement.classList.add("locked");
-    cover.addEventListener("click", open);
-    if (calm) { draw(1, 0, 0); cover.classList.add("ready"); return; }
-    draw(0, 0, 0); cover.classList.add("walking");
-    setTimeout(function () {                        // they arrive and each takes an end
-      if (started) return;
-      cover.classList.remove("walking");
-      run(700, function (t) { if (!started) draw(ease(t), 0, 0); }, function () { if (!started) cover.classList.add("ready"); });
-    }, 2600);
-  })();
-
-  // ---- The two of us walk in beside our names at the end of the page ----
-  (function () {
-    var c = document.getElementById("couple");
-    if (calm || !("IntersectionObserver" in window)) { c.classList.add("in"); return; }
-    new IntersectionObserver(function (e, io) { if (e[0].isIntersecting) { c.classList.add("in"); io.disconnect(); } }, { threshold: 0.4 }).observe(c);
+    clip.addEventListener("ended", reveal);
+    clip.addEventListener("error", function () { console.error("opening clip failed to load"); if (started) reveal(); });
+    cover.addEventListener("click", function () {
+      if (started) return; started = true;
+      music.wanted = true; if (music.start) music.start();
+      if (calm) { reveal(); return; }
+      cover.classList.add("playing");
+      clip.play().catch(function (err) { console.error(err); reveal(); });
+      setTimeout(reveal, 5000);                    // never leave a guest stuck on the cover
+    });
   })();
 
   // ---- Scratch card ----
