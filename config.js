@@ -2,7 +2,7 @@
 window.WEDDING = {
   // Web app URL from the Google Apps Script (see README, "RSVP sheet").
   // While this is empty, the RSVP form stays hidden.
-  rsvpUrl: "",
+  rsvpUrl: "https://script.google.com/macros/s/AKfycbyvs3C-dlXldcM1xbASIJarsYySrKBYTxiZZINgIxnRWqGMkEdELQCv4Bua4UFxzn2u/exec",
 
   // YouTube links for your videos (unlisted is fine), one per line in quotes.
   // Example: "https://youtu.be/abc123XYZ00",
