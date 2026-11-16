@@ -13,6 +13,9 @@
   @font-face { font-family: "Cormorant Garamond"; font-weight: 500; src: url("fonts/cormorant-garamond-latin-500-normal.woff2") format("woff2"); font-display: swap; }
   @font-face { font-family: "Cormorant Garamond"; font-weight: 500; font-style: italic; src: url("fonts/cormorant-garamond-latin-500-italic.woff2") format("woff2"); font-display: swap; }
   @font-face { font-family: "Cormorant Garamond"; font-weight: 600; src: url("fonts/cormorant-garamond-latin-600-normal.woff2") format("woff2"); font-display: swap; }
+  @font-face { font-family: "Allura"; src: url("fonts/allura-latin-400-normal.woff2") format("woff2"); font-display: swap; }
+  /* Great Vibes draws its capital A like a large lowercase a; this one letter comes from Allura so it reads as a capital. */
+  .cap-a { font-family: "Allura", var(--script); font-size: 1.08em; }
   :root {
     --cream: #fbf2e7; --blush: #f4e0d5; --petal: #f3c9cc; --rose: #a8505f; --rose-deep: #8a3c4b;
     --gold: #c9a45c; --ink: #4b3935; --muted: #8b7169;
@@ -439,7 +442,7 @@
 
   <section class="gifts" id="gifts">
     <div class="wrap">
-      <h2>About Gifts</h2>
+      <h2><span class="cap-a">A</span>bout Gifts</h2>
       <p>Having you with us is what we are asking for. If you would like to give something, we are putting together a new-home fund in place of gifts, to help us set up our first home together.</p>
     </div>
   </section>
