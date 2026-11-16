@@ -1,0 +1,4 @@
+---
+---
+{% for f in site.static_files %}{% if f.path contains '/media/' %}{{ f.path }}
+{% endif %}{% endfor %}

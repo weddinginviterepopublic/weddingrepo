@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mahisa &amp; Karteek | 18–19 December 2026, Visakhapatnam</title>
+<meta name="description" content="Mahisa Sanofer and Karteek Edumudi are getting married at Palm Beach Hotel, Visakhapatnam, on 18 and 19 December 2026.">
+<meta property="og:title" content="Mahisa &amp; Karteek are getting married">
+<meta property="og:description" content="Palm Beach Hotel, Visakhapatnam. Reception 18 December, Muhurtham 19 December 2026.">
+<meta name="theme-color" content="#0f1a30">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&family=Marcellus&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --night: #0f1a30;      /* Bay of Bengal after dark */
+    --deep: #1d3350;       /* sea before first light */
+    --marigold: #e39a2b;   /* garland orange, the rising sun */
+    --dawn: #f6d9a8;       /* first light on the horizon */
+    --mist: #eef2f4;       /* pale morning sky */
+    --ink: #17202e;
+    --muted: #55606f;
+    --display: "Marcellus", "Palatino Linotype", Palatino, Georgia, serif;
+    --body: "Hanken Grotesk", "Segoe UI", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; font-family: var(--body); font-size: 1.0625rem; line-height: 1.6; color: var(--ink); background: var(--mist); }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--marigold); outline-offset: 3px; }
+
+  /* ---------- Hero: night sea, sun coming up ---------- */
+  .hero { position: relative; min-height: 100svh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 4rem 1.5rem 0; color: #fff; overflow: hidden;
+    background: linear-gradient(180deg, var(--night) 0%, #1a2c4a 46%, #4a4a63 66%, #b9805a 80%, var(--dawn) 92%); }
+  .hero-text { position: relative; z-index: 2; margin-bottom: 36svh; }
+  .hero p { margin: 0; }
+  .invite { font-size: 1.05rem; color: #cfd8e3; }
+  .names { font-family: var(--display); font-weight: 400; font-size: clamp(3.2rem, 11vw, 8rem); line-height: 1; margin: 1.2rem 0 1.4rem; letter-spacing: 0.01em; }
+  .names span { display: block; }
+  .names .amp { font-size: 0.42em; color: var(--dawn); margin: 0.35em 0; }
+  .when { font-family: var(--display); font-size: clamp(1.2rem, 3vw, 1.7rem); }
+  .where { color: #cfd8e3; margin-top: 0.3rem; }
+  .sun { position: absolute; left: 50%; bottom: 14svh; width: min(46vw, 300px); aspect-ratio: 1; border-radius: 50%; transform: translate(-50%, 50%);
+    background: radial-gradient(circle, #ffd27a 0%, var(--marigold) 62%, #c9741e 100%); box-shadow: 0 0 120px 40px rgba(246, 217, 168, 0.35); animation: rise 2.6s cubic-bezier(.2,.7,.2,1) both; }
+  .sea { position: absolute; left: 0; right: 0; bottom: 0; height: 14svh; z-index: 1;
+    background: linear-gradient(180deg, #24405f 0%, var(--deep) 100%); border-top: 1px solid rgba(246, 217, 168, 0.55); }
+  .sea::before { content: ""; position: absolute; left: 50%; top: 0; width: min(30vw, 190px); height: 100%; transform: translateX(-50%);
+    background: repeating-linear-gradient(180deg, rgba(246,217,168,.55) 0 2px, transparent 2px 9px); mask-image: linear-gradient(180deg, #000, transparent); -webkit-mask-image: linear-gradient(180deg, #000, transparent); }
+  .sun { animation-play-state: paused; }
+  .opened .sun { animation-play-state: running; }
+
+  /* ---------- Cover: sealed doors that open on tap ---------- */
+  html.locked { overflow: hidden; }
+  .cover { position: fixed; inset: 0; z-index: 50; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.6rem; text-align: center; color: #fff; padding: 1.5rem; }
+  .leaf { position: absolute; top: 0; bottom: 0; width: 50.2%; background-color: var(--night); transition: transform 1.9s cubic-bezier(.7,0,.2,1);
+    background-image: radial-gradient(circle at 50% 100%, transparent 9px, rgba(246,217,168,.13) 10px, transparent 11.5px); background-size: 24px 13px; }
+  .leaf::before { content: ""; position: absolute; inset: 14px; border: 1px solid rgba(246,217,168,.55); }
+  .leaf::after { content: ""; position: absolute; inset: 26px; border: 1px solid rgba(246,217,168,.25); }
+  .leaf.l { left: 0; box-shadow: inset -1px 0 0 rgba(246,217,168,.6); }
+  .leaf.l::before { border-radius: 999px 0 0 0; } .leaf.l::after { border-radius: 999px 0 0 0; }
+  .leaf.r { right: 0; }
+  .leaf.r::before { border-radius: 0 999px 0 0; } .leaf.r::after { border-radius: 0 999px 0 0; }
+  .cover > p, .cover > button { position: relative; z-index: 1; margin: 0; transition: opacity .6s, transform .6s; }
+  .cover .who { font-family: var(--display); font-size: clamp(1.5rem, 6vw, 2.4rem); line-height: 1.2; max-width: 14ch; }
+  .cover .hint { color: var(--dawn); }
+  .seal { width: 8.5rem; height: 8.5rem; border-radius: 50%; border: 0; cursor: pointer; font-family: var(--display); font-size: 2rem; color: var(--night);
+    background: radial-gradient(circle at 38% 32%, #ffd27a 0%, var(--marigold) 55%, #b9661a 100%);
+    box-shadow: 0 0 0 6px rgba(227,154,43,.35), 0 0 0 7px rgba(246,217,168,.6), 0 14px 34px rgba(0,0,0,.5), inset 0 0 0 5px rgba(255,255,255,.18); animation: pulse 2.4s ease-in-out infinite; }
+  .seal span { display: block; font-size: .5em; line-height: 1; }
+  @keyframes pulse { 50% { transform: scale(1.05); } }
+  .opened .leaf.l { transform: translateX(-101%); }
+  .opened .leaf.r { transform: translateX(101%); }
+  .opened .cover > p, .opened .cover > button { opacity: 0; transform: scale(1.25); pointer-events: none; }
+  .confetti { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 60; pointer-events: none; }
+
+  /* ---------- Scratch to reveal the date ---------- */
+  .reveal { text-align: center; background: #fff; }
+  .reveal p { margin-left: auto; margin-right: auto; }
+  .scratch { position: relative; width: min(100%, 26rem); aspect-ratio: 16 / 9; margin: 2rem auto 1.4rem; border-radius: 8px; overflow: hidden; background: var(--dawn); display: grid; place-content: center; padding: 1rem; }
+  .scratch .big { font-family: var(--display); font-size: clamp(1.5rem, 6vw, 2.2rem); line-height: 1.15; margin: 0 0 .4rem; }
+  .scratch p { margin: 0; }
+  .scratch canvas { position: absolute; inset: 0; width: 100%; height: 100%; touch-action: none; cursor: grab; transition: opacity .8s; }
+  .scratch.done canvas { opacity: 0; pointer-events: none; }
+  .linkish { font: inherit; background: none; border: 0; color: var(--muted); text-decoration: underline; text-underline-offset: 4px; cursor: pointer; }
+
+  @keyframes rise { from { transform: translate(-50%, 115%); } to { transform: translate(-50%, 50%); } }
+  @media (prefers-reduced-motion: reduce) { .sun, .seal { animation: none; } .leaf, .cover > p, .cover > button { transition: none; } html { scroll-behavior: auto; } }
+
+  /* ---------- Sections ---------- */
+  section { padding: clamp(4rem, 9vw, 7rem) 1.5rem; }
+  .wrap { max-width: 62rem; margin: 0 auto; }
+  h2 { font-family: var(--display); font-weight: 400; font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.1; margin: 0 0 1.5rem; }
+  p { max-width: 38rem; }
+
+  .countdown { background: var(--deep); color: #fff; padding: 2.2rem 1.5rem; }
+  .countdown .wrap { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: center; gap: 0.6rem 2.4rem; text-align: center; }
+  .countdown b { font-family: var(--display); font-weight: 400; font-size: 2.2rem; color: var(--dawn); margin-right: 0.35rem; }
+
+  /* Two days, in order: evening then dawn */
+  .days { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-top: 2.5rem; border-radius: 6px; overflow: hidden; }
+  .day { padding: clamp(1.8rem, 4vw, 3rem); }
+  .day.evening { background: var(--night); color: #fff; }
+  .day.morning { background: var(--dawn); color: var(--ink); }
+  .day h3 { font-family: var(--display); font-weight: 400; font-size: clamp(1.7rem, 3.5vw, 2.4rem); margin: 0.2rem 0 0.8rem; }
+  .day .date { font-weight: 600; }
+  .day .time { font-family: var(--display); font-size: clamp(2.4rem, 6vw, 3.6rem); line-height: 1; margin: 1rem 0 0.4rem; }
+  .day.evening .time { color: var(--dawn); }
+  .day p { margin: 0 0 0.6rem; }
+  .day .note { font-size: 0.95rem; opacity: 0.85; }
+  .cal { display: inline-block; margin-top: 1rem; font-weight: 600; text-underline-offset: 4px; }
+
+  .venue { background: #fff; }
+  .venue .wrap { display: grid; grid-template-columns: 1.1fr 1fr; gap: 3rem; align-items: center; }
+  .place { font-family: var(--display); font-size: clamp(1.5rem, 3vw, 2rem); margin: 0 0 0.5rem; }
+  .btn { display: inline-block; margin-top: 1.2rem; padding: 0.85rem 1.5rem; border-radius: 999px; background: var(--night); color: #fff; font-weight: 600; text-decoration: none; }
+  .btn:hover { background: var(--deep); }
+  .btn.gold { background: var(--marigold); color: var(--night); }
+  .btn.gold:hover { background: #f0ab42; }
+  .mapcard { background: var(--mist); border-radius: 6px; padding: 2rem; }
+  .map { display: block; width: 100%; height: clamp(16rem, 45vw, 24rem); border: 0; border-radius: 6px; margin-top: 2.5rem; }
+  .mapcard dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 0.6rem 1.2rem; }
+  .mapcard dt { color: var(--muted); }
+  .mapcard dd { margin: 0; font-weight: 500; }
+
+  .rsvp { background: var(--night); color: #fff; text-align: center; }
+  .rsvp p { margin-left: auto; margin-right: auto; color: #cfd8e3; }
+  .rsvp .deadline { font-family: var(--display); font-size: clamp(1.5rem, 3.4vw, 2.2rem); color: var(--dawn); margin: 0 auto 1rem; }
+
+  .rsvp form { max-width: 34rem; margin: 2rem auto 0; text-align: left; display: grid; gap: 1.1rem; }
+  .rsvp label, .rsvp legend { display: block; font-weight: 600; color: #fff; margin-bottom: 0.35rem; padding: 0; }
+  .rsvp input[type=text], .rsvp select, .rsvp textarea { width: 100%; font: inherit; color: var(--ink); background: #fff; border: 2px solid transparent; border-radius: 6px; padding: 0.7rem 0.8rem; }
+  .rsvp fieldset { border: 0; margin: 0; padding: 0; }
+  .rsvp .choice { display: inline-flex; align-items: center; gap: 0.45rem; font-weight: 400; margin: 0 1.4rem 0.3rem 0; color: #e6ebf2; }
+  .rsvp .choice input { width: 1.15rem; height: 1.15rem; accent-color: var(--marigold); }
+  .rsvp .hp { position: absolute; left: -9999px; }
+  .rsvp button { border: 0; cursor: pointer; font: inherit; font-weight: 600; justify-self: start; margin-top: 0.4rem; }
+  .rsvp button[disabled] { opacity: 0.6; cursor: wait; }
+  .rsvp .status { margin: 0; min-height: 1.6em; color: var(--dawn); font-weight: 600; }
+  .rsvp .status.error { color: #ffb4a6; }
+
+  .gallery { background: #fff; }
+  .grid { columns: 3 15rem; column-gap: 0.8rem; margin-top: 2rem; }
+  .grid button { display: block; width: 100%; padding: 0; margin: 0 0 0.8rem; border: 0; background: none; cursor: zoom-in; break-inside: avoid; min-height: 6rem; background: var(--mist); border-radius: 4px; }
+  .grid img { display: block; width: 100%; height: auto; border-radius: 4px; }
+  dialog.lightbox { border: 0; padding: 0; background: transparent; max-width: 96vw; max-height: 96vh; }
+  dialog.lightbox::backdrop { background: rgba(15, 26, 48, 0.92); }
+  dialog.lightbox img { display: block; max-width: 96vw; max-height: 88vh; border-radius: 4px; }
+  .lb-bar { display: flex; justify-content: space-between; gap: 0.5rem; margin-top: 0.6rem; }
+  .lb-bar button { font: inherit; font-weight: 600; color: #fff; background: rgba(255,255,255,0.14); border: 0; border-radius: 999px; padding: 0.55rem 1.1rem; cursor: pointer; }
+
+  .videos .reel { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr)); gap: 1.2rem; margin-top: 2rem; }
+  .videos iframe, .videos video { width: 100%; aspect-ratio: 16 / 9; border: 0; border-radius: 6px; background: var(--night); display: block; }
+
+  .music { position: fixed; right: 1rem; bottom: 1rem; z-index: 20; font: inherit; font-weight: 600; color: var(--night); background: var(--dawn); border: 0; border-radius: 999px; padding: 0.7rem 1.2rem; cursor: pointer; box-shadow: 0 6px 20px rgba(15, 26, 48, 0.35); }
+  .music[aria-pressed=true] { background: var(--marigold); }
+
+  .gifts p { font-size: 1.15rem; }
+
+  footer { background: var(--deep); color: #cfd8e3; text-align: center; padding: 2.5rem 1.5rem; }
+  footer .sig { font-family: var(--display); font-size: 1.6rem; color: #fff; margin: 0 auto 0.3rem; }
+  footer p { margin: 0 auto; }
+
+  @media (max-width: 720px) {
+    .days, .venue .wrap { grid-template-columns: 1fr; }
+    .venue .wrap { gap: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cover" id="cover">
+  <div class="leaf l" aria-hidden="true"></div>
+  <div class="leaf r" aria-hidden="true"></div>
+  <p class="who">The wedding of Mahisa and Karteek</p>
+  <button class="seal" id="seal" type="button" aria-label="Open the invitation">M<span>and</span>K</button>
+  <p class="hint">Tap the seal to open your invitation</p>
+</div>
+
+<header class="hero">
+  <div class="hero-text">
+    <p class="invite">Together with our families, we invite you to the wedding of</p>
+    <h1 class="names"><span>Mahisa</span><span class="amp">and</span><span>Karteek</span></h1>
+    <p class="when">18 and 19 December 2026</p>
+    <p class="where">Palm Beach Hotel, Visakhapatnam</p>
+  </div>
+  <div class="sun" aria-hidden="true"></div>
+  <div class="sea" aria-hidden="true"></div>
+</header>
+
+<section class="reveal" id="date">
+  <div class="wrap">
+    <h2>Save the date</h2>
+    <p>Scratch the card with your finger to see when.</p>
+    <div class="scratch" id="scratch">
+      <div>
+        <p class="big">18 and 19 December 2026</p>
+        <p>Palm Beach Hotel, Visakhapatnam</p>
+      </div>
+      <canvas id="scratch-canvas" aria-hidden="true"></canvas>
+    </div>
+    <button class="linkish" id="scratch-skip" type="button">Show the date without scratching</button>
+  </div>
+</section>
+
+<div class="countdown" id="countdown" hidden>
+  <div class="wrap" role="timer" aria-label="Time until the reception">
+    <span><b id="cd-d">0</b>days</span>
+    <span><b id="cd-h">0</b>hours</span>
+    <span><b id="cd-m">0</b>minutes</span>
+    <span><b id="cd-s">0</b>seconds</span>
+    <span>until the reception</span>
+  </div>
+</div>
+
+<main>
+  <section id="events">
+    <div class="wrap">
+      <h2>An evening by the sea, then a wedding before sunrise</h2>
+      <p>We are celebrating over two days. Join us for the reception on Friday evening, and stay for the Muhurtham early on Saturday morning.</p>
+
+      <div class="days">
+        <article class="day evening">
+          <p class="date">Friday, 18 December 2026</p>
+          <h3>Reception</h3>
+          <p class="time">7:00 PM</p>
+          <p>Palm Beach Hotel, Visakhapatnam</p>
+          <a class="cal" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Mahisa+%26+Karteek+%E2%80%93+Reception&dates=20261218T133000Z/20261218T163000Z&location=Palm+Beach+Hotel,+Visakhapatnam&details=Wedding+reception+of+Mahisa+Sanofer+and+Karteek+Edumudi">Add the reception to your calendar</a>
+        </article>
+        <article class="day morning">
+          <p class="date">Saturday, 19 December 2026</p>
+          <h3>Muhurtham</h3>
+          <p class="time">4:30 AM</p>
+          <p>Palm Beach Hotel, Visakhapatnam</p>
+          <p class="note">This is early Saturday morning, the night of the reception.</p>
+          <a class="cal" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Mahisa+%26+Karteek+%E2%80%93+Muhurtham&dates=20261218T230000Z/20261219T010000Z&location=Palm+Beach+Hotel,+Visakhapatnam&details=Wedding+ceremony+of+Mahisa+Sanofer+and+Karteek+Edumudi">Add the Muhurtham to your calendar</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="venue" id="venue">
+    <div class="wrap">
+      <div>
+        <h2>Where to find us</h2>
+        <p class="place">Palm Beach Hotel</p>
+        <p>Visakhapatnam, Andhra Pradesh, India. Both the reception and the Muhurtham are here.</p>
+        <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Palm+Beach+Hotel+Visakhapatnam">Open in Google Maps</a>
+      </div>
+      <div class="mapcard">
+        <dl>
+          <dt>Reception</dt><dd>Fri 18 Dec, 7:00 PM</dd>
+          <dt>Muhurtham</dt><dd>Sat 19 Dec, 4:30 AM</dd>
+          <dt>Times</dt><dd>India Standard Time</dd>
+          <dt>Reply by</dt><dd>Tue 15 Dec</dd>
+        </dl>
+      </div>
+    </div>
+    <div class="wrap">
+      <iframe class="map" title="Map showing Palm Beach Hotel, Visakhapatnam" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Palm+Beach+Hotel+Visakhapatnam&output=embed"></iframe>
+    </div>
+  </section>
+
+  <section class="gallery" id="photos" hidden>
+    <div class="wrap">
+      <h2>The two of us</h2>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <section class="videos" id="videos" hidden>
+    <div class="wrap">
+      <h2>Videos</h2>
+      <div class="reel" id="reel"></div>
+    </div>
+  </section>
+
+  <section class="rsvp" id="rsvp">
+    <div class="wrap">
+      <h2>Will you be there?</h2>
+      <p class="deadline">Please reply by Tuesday, 15 December 2026</p>
+      <p>Let us know who is coming so we can plan seating and food for everyone.</p>
+      <form id="rsvp-form" hidden>
+        <div>
+          <label for="f-name">Your name</label>
+          <input type="text" id="f-name" name="name" required autocomplete="name">
+        </div>
+        <div>
+          <label for="f-contact">Phone or email</label>
+          <input type="text" id="f-contact" name="contact" autocomplete="tel">
+        </div>
+        <fieldset>
+          <legend>Will you join us?</legend>
+          <label class="choice"><input type="radio" name="attending" value="Yes" required> Yes, I will be there</label>
+          <label class="choice"><input type="radio" name="attending" value="No"> Sorry, I can't make it</label>
+        </fieldset>
+        <div>
+          <label for="f-guests">How many people, including you?</label>
+          <select id="f-guests" name="guests">
+            <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option>
+          </select>
+        </div>
+        <fieldset>
+          <legend>Which events?</legend>
+          <label class="choice"><input type="checkbox" name="events" value="Reception" checked> Reception, Fri 7:00 PM</label>
+          <label class="choice"><input type="checkbox" name="events" value="Muhurtham" checked> Muhurtham, Sat 4:30 AM</label>
+        </fieldset>
+        <div>
+          <label for="f-message">A note for us (optional)</label>
+          <textarea id="f-message" name="message" rows="3"></textarea>
+        </div>
+        <div class="hp" aria-hidden="true"><label>Leave this empty <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+        <button class="btn gold" type="submit">Send reply</button>
+        <p class="status" id="rsvp-status" role="status"></p>
+      </form>
+    </div>
+  </section>
+
+  <section class="gifts" id="gifts">
+    <div class="wrap">
+      <h2>About gifts</h2>
+      <p>Having you with us is what we are asking for. If you would like to give something, we are putting together a new-home fund in place of gifts, to help us set up our first home together.</p>
+    </div>
+  </section>
+</main>
+
+<button class="music" id="music-btn" type="button" aria-pressed="false" hidden>Play music</button>
+
+<dialog class="lightbox" id="lightbox" aria-label="Photo viewer">
+  <img id="lb-img" alt="">
+  <div class="lb-bar">
+    <button type="button" id="lb-prev">Previous</button>
+    <button type="button" id="lb-close">Close</button>
+    <button type="button" id="lb-next">Next</button>
+  </div>
+</dialog>
+
+<footer>
+  <p class="sig">Mahisa Sanofer and Karteek Edumudi</p>
+  <p>18 and 19 December 2026, Visakhapatnam</p>
+</footer>
+
+<script src="config.js"></script>
+<script>
+  var CFG = window.WEDDING || {};
+  var RECEPTION_START = "2026-12-18T19:00:00+05:30";
+
+  var calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var music = { wanted: false, start: null };
+
+  // ---- Confetti ----
+  function confetti() {
+    if (calm) return;
+    var c = document.createElement("canvas"); c.className = "confetti"; document.body.appendChild(c);
+    var w = c.width = innerWidth, h = c.height = innerHeight, g = c.getContext("2d"), t0 = performance.now();
+    var colors = ["#e39a2b", "#f6d9a8", "#ffffff", "#1d3350"];
+    var bits = []; for (var i = 0; i < 140; i++) bits.push({ x: w / 2, y: h * 0.45, vx: (Math.random() - 0.5) * 14, vy: -Math.random() * 13 - 3, s: 5 + Math.random() * 7, r: Math.random() * 6, c: colors[i % 4] });
+    (function frame(now) {
+      var age = now - t0; g.clearRect(0, 0, w, h);
+      bits.forEach(function (b) {
+        b.vy += 0.28; b.x += b.vx; b.y += b.vy; b.r += 0.2;
+        g.save(); g.translate(b.x, b.y); g.rotate(b.r); g.globalAlpha = Math.max(0, 1 - age / 3200); g.fillStyle = b.c; g.fillRect(-b.s / 2, -b.s / 4, b.s, b.s / 2); g.restore();
+      });
+      if (age < 3200) requestAnimationFrame(frame); else c.remove();
+    })(t0);
+  }
+
+  // ---- Cover: tap the seal, the doors open, the music starts ----
+  (function () {
+    var cover = document.getElementById("cover");
+    document.documentElement.classList.add("locked");
+    document.getElementById("seal").addEventListener("click", function () {
+      document.body.classList.add("opened");
+      document.documentElement.classList.remove("locked");
+      music.wanted = true; if (music.start) music.start();
+      setTimeout(function () { cover.hidden = true; }, calm ? 0 : 2000);
+    });
+  })();
+
+  // ---- Scratch card ----
+  (function () {
+    var box = document.getElementById("scratch"), c = document.getElementById("scratch-canvas"), skip = document.getElementById("scratch-skip");
+    var g = c.getContext("2d"), dpr = Math.min(window.devicePixelRatio || 1, 2), moves = 0, finished = false;
+    function paint() {
+      var r = box.getBoundingClientRect(); c.width = r.width * dpr; c.height = r.height * dpr;
+      var grad = g.createLinearGradient(0, 0, c.width, c.height); grad.addColorStop(0, "#f0b655"); grad.addColorStop(0.5, "#e39a2b"); grad.addColorStop(1, "#b9661a");
+      g.globalCompositeOperation = "source-over"; g.fillStyle = grad; g.fillRect(0, 0, c.width, c.height);
+      g.fillStyle = "rgba(255,255,255,.25)"; for (var i = 0; i < 500; i++) g.fillRect(Math.random() * c.width, Math.random() * c.height, dpr, dpr);
+      g.fillStyle = "#0f1a30"; g.textAlign = "center"; g.textBaseline = "middle"; g.font = (20 * dpr) + "px Marcellus, Georgia, serif"; g.fillText("Scratch here", c.width / 2, c.height / 2);
+    }
+    function finish() { if (finished) return; finished = true; box.classList.add("done"); skip.hidden = true; confetti(); }
+    function cleared() {
+      var d = g.getImageData(0, 0, c.width, c.height).data, clear = 0, n = 0;
+      for (var i = 3; i < d.length; i += 4 * 37) { n++; if (d[i] === 0) clear++; }
+      return clear / n;
+    }
+    function rub(e) {
+      var r = c.getBoundingClientRect();
+      g.globalCompositeOperation = "destination-out"; g.beginPath();
+      g.arc((e.clientX - r.left) * dpr, (e.clientY - r.top) * dpr, 26 * dpr, 0, Math.PI * 2); g.fill();
+      if (++moves % 8 === 0 && cleared() > 0.45) finish();
+    }
+    c.addEventListener("pointerdown", function (e) { c.setPointerCapture(e.pointerId); rub(e); });
+    c.addEventListener("pointermove", function (e) { if (e.buttons || e.pointerType === "touch") rub(e); });
+    skip.addEventListener("click", finish);
+    paint();
+  })();
+
+  // ---- Countdown ----
+  (function () {
+    var box = document.getElementById("countdown");
+    var target = new Date(RECEPTION_START).getTime();
+    function tick() {
+      var ms = target - Date.now();
+      if (ms <= 0) { box.hidden = true; return; }
+      var mins = Math.floor(ms / 60000);
+      document.getElementById("cd-s").textContent = Math.floor(ms / 1000) % 60;
+      document.getElementById("cd-d").textContent = Math.floor(mins / 1440);
+      document.getElementById("cd-h").textContent = Math.floor((mins % 1440) / 60);
+      document.getElementById("cd-m").textContent = mins % 60;
+      box.hidden = false;
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+
+  // ---- Media: everything under media/ is listed in media-list.txt by the site build ----
+  function url(path) { return path.replace(/^\//, "").split("/").map(encodeURIComponent).join("/"); }
+  function pick(paths, folder, exts) {
+    return paths.filter(function (p) { return p.indexOf("/media/" + folder + "/") === 0 && exts.test(p); }).sort();
+  }
+
+  fetch("media-list.txt", { cache: "no-cache" })
+    .then(function (r) { if (!r.ok) throw new Error("media-list.txt: HTTP " + r.status); return r.text(); })
+    .then(function (text) {
+      var paths = text.split("\n").map(function (l) { return l.trim(); }).filter(function (l) { return l.charAt(0) === "/"; });
+      showPhotos(pick(paths, "photos", /\.(jpe?g|png|webp|gif|avif)$/i));
+      showMusic(pick(paths, "music", /\.(mp3|m4a|ogg|wav)$/i));
+      showVideos(pick(paths, "videos", /\.(mp4|webm|mov)$/i));
+    })
+    .catch(function (err) { console.error(err); showVideos([]); });
+
+  function showPhotos(photos) {
+    if (!photos.length) return;
+    var grid = document.getElementById("grid"), box = document.getElementById("lightbox"), big = document.getElementById("lb-img"), at = 0;
+    function open(i) { at = (i + photos.length) % photos.length; big.src = url(photos[at]); big.alt = "Photo " + (at + 1) + " of " + photos.length; if (!box.open) box.showModal(); }
+    photos.forEach(function (p, i) {
+      var b = document.createElement("button"), img = document.createElement("img");
+      b.type = "button"; b.setAttribute("aria-label", "Open photo " + (i + 1));
+      img.src = url(p); img.alt = ""; img.loading = "lazy";
+      b.appendChild(img); b.addEventListener("click", function () { open(i); }); grid.appendChild(b);
+    });
+    document.getElementById("lb-prev").addEventListener("click", function () { open(at - 1); });
+    document.getElementById("lb-next").addEventListener("click", function () { open(at + 1); });
+    document.getElementById("lb-close").addEventListener("click", function () { box.close(); });
+    box.addEventListener("keydown", function (e) { if (e.key === "ArrowLeft") open(at - 1); if (e.key === "ArrowRight") open(at + 1); });
+    box.addEventListener("click", function (e) { if (e.target === box) box.close(); });
+    document.getElementById("photos").hidden = false;
+  }
+
+  function showMusic(tracks) {
+    if (!tracks.length) return;
+    var btn = document.getElementById("music-btn"), audio = new Audio(url(tracks[0]));
+    audio.loop = true; audio.preload = "none";
+    function label() { var on = !audio.paused; btn.setAttribute("aria-pressed", on); btn.textContent = on ? "Pause music" : "Play music"; }
+    btn.addEventListener("click", function () {
+      if (audio.paused) audio.play().then(label, function (err) { console.error(err); btn.textContent = "Music could not play"; });
+      else { audio.pause(); label(); }
+    });
+    btn.hidden = false;
+    music.start = function () { if (audio.paused) audio.play().then(label, function (err) { console.error(err); }); };
+    if (music.wanted) music.start();
+  }
+
+  function youtubeId(link) {
+    var m = String(link).match(/(?:youtu\.be\/|[?&]v=|\/shorts\/|\/embed\/)([\w-]{11})/);
+    return m ? m[1] : null;
+  }
+  function showVideos(files) {
+    var reel = document.getElementById("reel"), count = 0;
+    (CFG.videos || []).forEach(function (link) {
+      var id = youtubeId(link);
+      if (!id) { console.error("config.js: not a YouTube link: " + link); return; }
+      var f = document.createElement("iframe");
+      f.src = "https://www.youtube-nocookie.com/embed/" + id; f.title = "Wedding video"; f.loading = "lazy";
+      f.allow = "accelerometer; encrypted-media; picture-in-picture; fullscreen"; f.allowFullscreen = true;
+      reel.appendChild(f); count++;
+    });
+    files.forEach(function (p) {
+      var v = document.createElement("video");
+      v.src = url(p); v.controls = true; v.preload = "metadata"; v.playsInline = true;
+      reel.appendChild(v); count++;
+    });
+    if (count) document.getElementById("videos").hidden = false;
+  }
+
+  // ---- RSVP: posts to the Google Apps Script web app, which adds a row to the sheet ----
+  (function () {
+    var form = document.getElementById("rsvp-form"), status = document.getElementById("rsvp-status");
+    if (!CFG.rsvpUrl) return;
+    form.hidden = false;
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var data = new FormData(form);
+      if (data.get("website")) return; // spam trap
+      var body = new URLSearchParams();
+      body.set("name", data.get("name").trim());
+      body.set("contact", data.get("contact").trim());
+      body.set("attending", data.get("attending"));
+      body.set("guests", data.get("attending") === "Yes" ? data.get("guests") : "0");
+      body.set("events", data.get("attending") === "Yes" ? data.getAll("events").join(", ") : "");
+      body.set("message", data.get("message").trim());
+      var btn = form.querySelector("button[type=submit]");
+      btn.disabled = true; status.className = "status"; status.textContent = "Sending your reply";
+      fetch(CFG.rsvpUrl, { method: "POST", body: body })
+        .then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+        .then(function (res) {
+          if (!res.ok) throw new Error(res.error || "The sheet did not accept the reply");
+          form.reset(); status.textContent = "Reply sent. Thank you!";
+        })
+        .catch(function (err) {
+          console.error(err);
+          status.className = "status error";
+          status.textContent = "Your reply was not sent. Check your connection and send it again.";
+        })
+        .then(function () { btn.disabled = false; });
+    });
+  })();
+</script>
+</body>
+</html>
