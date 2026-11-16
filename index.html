@@ -91,7 +91,7 @@
 
   /* ---------- Cover: cream doors that swing open ---------- */
   .cover { position: fixed; inset: 0; z-index: 50; perspective: 1500px; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 1rem; text-align: center; padding: 22svh 1.5rem 0; cursor: pointer; }
-  .leaf { position: absolute; top: 0; bottom: 0; width: 50.2%; transition: transform 2.6s cubic-bezier(.55,.05,.2,1), filter 2.6s ease; backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  .leaf { position: absolute; top: 0; bottom: 0; width: 50.2%; transition: transform 3.8s cubic-bezier(.5,.05,.25,1), filter 3.8s ease; backface-visibility: hidden; -webkit-backface-visibility: hidden;
     background-color: #f3e3d3; }
   .leaf::before { content: ""; position: absolute; inset: 16px; border: 1.5px solid var(--gold); opacity: .8; }
   .leaf::after { content: ""; position: absolute; inset: 28px; border: 1px solid rgba(201,164,92,.55); box-shadow: inset 0 0 40px rgba(255,255,255,.7); }
@@ -106,7 +106,7 @@
   /* The opening clip has a white backdrop; multiply lets the doors show through it, so the two of us stand in front of the doors. */
   .cover { display: block; padding: 0; }
   .leaf::before, .leaf::after { display: none; }
-  .intro { position: absolute; z-index: 1; left: 50%; bottom: 0; translate: -50% 0; height: min(76svh, 176.67vw); aspect-ratio: 480 / 848; object-fit: cover; mix-blend-mode: multiply; pointer-events: none; transition: opacity 1s ease;
+  .intro { position: absolute; z-index: 1; left: 50%; bottom: 0; translate: -50% 0; height: min(76svh, 176.67vw); aspect-ratio: 480 / 848; object-fit: cover; mix-blend-mode: multiply; pointer-events: none; transition: opacity 1.6s ease .5s;
     -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 4%, #000 96%, transparent 100%); mask-image: linear-gradient(90deg, transparent 0, #000 4%, #000 96%, transparent 100%); }
   .cover > .who { position: absolute; z-index: 2; top: 15.5svh; left: 0; right: 0; margin: 0 auto; max-width: 18ch; font-size: clamp(1.7rem, 7vw, 2.4rem); line-height: 1.12; }
   .cover > .sp.c1 { width: min(82vw, 27rem); translate: 0 -40%; }
@@ -136,7 +136,7 @@
   .opened .leaf.r { transform: rotateY(108deg); filter: brightness(.8); }
   .opened .cover > p, .opened .cover > button { opacity: 0; transform: scale(1.2); pointer-events: none; }
   .cover::before { content: ""; position: absolute; inset: 0; opacity: 0; background: radial-gradient(ellipse at 50% 50%, #fff 0%, rgba(255,244,230,.7) 30%, rgba(255,244,230,0) 70%); }
-  .opened .cover::before { animation: glow 2.6s ease forwards; }
+  .opened .cover::before { animation: glow 3.8s ease forwards; }
   @keyframes glow { 0% { opacity: 0; } 30% { opacity: 1; } 100% { opacity: 0; } }
   .petals { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 45; pointer-events: none; }
   .confetti { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 60; pointer-events: none; }
@@ -270,7 +270,7 @@
   <div class="leaf r" aria-hidden="true"></div>
   <span class="sp c1" aria-hidden="true"></span>
   <p class="who">The wedding of<br>Mahisa and Karteek</p>
-  <video class="intro" id="intro" src="media/art/opening-v2.mp4" poster="media/art/opening-v2-poster.jpg" muted playsinline preload="auto" aria-hidden="true"></video>
+  <video class="intro" id="intro" src="media/art/opening-v3.mp4" poster="media/art/opening-v2-poster.jpg" muted playsinline preload="auto" aria-hidden="true"></video>
   <button class="seal" id="seal" type="button">Tap to open</button>
 </div>
 
@@ -584,10 +584,10 @@
       document.body.classList.add("opened");
       document.documentElement.classList.remove("locked");
       petals();
-      setTimeout(function () { cover.hidden = true; clip.pause(); }, calm ? 0 : 2800);
+      setTimeout(function () { cover.hidden = true; clip.pause(); }, calm ? 0 : 4000);
     }
     document.documentElement.classList.add("locked");
-    clip.addEventListener("timeupdate", function () { if (clip.duration && clip.currentTime >= clip.duration - 0.7) reveal(); });
+    clip.addEventListener("timeupdate", function () { if (clip.duration && clip.currentTime >= clip.duration - 0.6) reveal(); });
     clip.addEventListener("ended", reveal);
     clip.addEventListener("error", function () { console.error("opening clip failed to load"); if (started) reveal(); });
     cover.addEventListener("click", function () {
@@ -596,7 +596,7 @@
       if (calm) { reveal(); return; }
       cover.classList.add("playing");
       clip.play().catch(function (err) { console.error(err); reveal(); });
-      setTimeout(reveal, 9000);                    // never leave a guest stuck on the cover
+      setTimeout(reveal, 10000);                    // never leave a guest stuck on the cover
     });
   })();
 
