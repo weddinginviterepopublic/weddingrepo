@@ -270,7 +270,7 @@
   <div class="leaf r" aria-hidden="true"></div>
   <span class="sp c1" aria-hidden="true"></span>
   <p class="who">The wedding of<br>Mahisa and Karteek</p>
-  <video class="intro" id="intro" src="media/art/opening-v3.mp4" poster="media/art/opening-v2-poster.jpg" muted playsinline preload="auto" aria-hidden="true"></video>
+  <video class="intro" id="intro" src="media/art/opening-v4.mp4" poster="media/art/opening-v2-poster.jpg" muted playsinline preload="auto" aria-hidden="true"></video>
   <button class="seal" id="seal" type="button">Tap to open</button>
 </div>
 
@@ -587,7 +587,7 @@
       setTimeout(function () { cover.hidden = true; clip.pause(); }, calm ? 0 : 4000);
     }
     document.documentElement.classList.add("locked");
-    clip.addEventListener("timeupdate", function () { if (clip.duration && clip.currentTime >= clip.duration - 0.6) reveal(); });
+    clip.addEventListener("timeupdate", function () { if (clip.duration && clip.currentTime >= clip.duration - 0.3) reveal(); });
     clip.addEventListener("ended", reveal);
     clip.addEventListener("error", function () { console.error("opening clip failed to load"); if (started) reveal(); });
     cover.addEventListener("click", function () {
