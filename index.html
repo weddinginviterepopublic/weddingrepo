@@ -47,8 +47,45 @@
     background: linear-gradient(180deg, #24405f 0%, var(--deep) 100%); border-top: 1px solid rgba(246, 217, 168, 0.55); }
   .sea::before { content: ""; position: absolute; left: 50%; top: 0; width: min(30vw, 190px); height: 100%; transform: translateX(-50%);
     background: repeating-linear-gradient(180deg, rgba(246,217,168,.55) 0 2px, transparent 2px 9px); mask-image: linear-gradient(180deg, #000, transparent); -webkit-mask-image: linear-gradient(180deg, #000, transparent); }
+  .sun { animation-play-state: paused; }
+  .opened .sun { animation-play-state: running; }
+
+  /* ---------- Cover: sealed doors that open on tap ---------- */
+  html.locked { overflow: hidden; }
+  .cover { position: fixed; inset: 0; z-index: 50; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.6rem; text-align: center; color: #fff; padding: 1.5rem; }
+  .leaf { position: absolute; top: 0; bottom: 0; width: 50.2%; background-color: var(--night); transition: transform 1.9s cubic-bezier(.7,0,.2,1);
+    background-image: radial-gradient(circle at 50% 100%, transparent 9px, rgba(246,217,168,.13) 10px, transparent 11.5px); background-size: 24px 13px; }
+  .leaf::before { content: ""; position: absolute; inset: 14px; border: 1px solid rgba(246,217,168,.55); }
+  .leaf::after { content: ""; position: absolute; inset: 26px; border: 1px solid rgba(246,217,168,.25); }
+  .leaf.l { left: 0; box-shadow: inset -1px 0 0 rgba(246,217,168,.6); }
+  .leaf.l::before { border-radius: 999px 0 0 0; } .leaf.l::after { border-radius: 999px 0 0 0; }
+  .leaf.r { right: 0; }
+  .leaf.r::before { border-radius: 0 999px 0 0; } .leaf.r::after { border-radius: 0 999px 0 0; }
+  .cover > p, .cover > button { position: relative; z-index: 1; margin: 0; transition: opacity .6s, transform .6s; }
+  .cover .who { font-family: var(--display); font-size: clamp(1.5rem, 6vw, 2.4rem); line-height: 1.2; max-width: 14ch; }
+  .cover .hint { color: var(--dawn); }
+  .seal { width: 8.5rem; height: 8.5rem; border-radius: 50%; border: 0; cursor: pointer; font-family: var(--display); font-size: 2rem; color: var(--night);
+    background: radial-gradient(circle at 38% 32%, #ffd27a 0%, var(--marigold) 55%, #b9661a 100%);
+    box-shadow: 0 0 0 6px rgba(227,154,43,.35), 0 0 0 7px rgba(246,217,168,.6), 0 14px 34px rgba(0,0,0,.5), inset 0 0 0 5px rgba(255,255,255,.18); animation: pulse 2.4s ease-in-out infinite; }
+  .seal span { display: block; font-size: .5em; line-height: 1; }
+  @keyframes pulse { 50% { transform: scale(1.05); } }
+  .opened .leaf.l { transform: translateX(-101%); }
+  .opened .leaf.r { transform: translateX(101%); }
+  .opened .cover > p, .opened .cover > button { opacity: 0; transform: scale(1.25); pointer-events: none; }
+  .confetti { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 60; pointer-events: none; }
+
+  /* ---------- Scratch to reveal the date ---------- */
+  .reveal { text-align: center; background: #fff; }
+  .reveal p { margin-left: auto; margin-right: auto; }
+  .scratch { position: relative; width: min(100%, 26rem); aspect-ratio: 16 / 9; margin: 2rem auto 1.4rem; border-radius: 8px; overflow: hidden; background: var(--dawn); display: grid; place-content: center; padding: 1rem; }
+  .scratch .big { font-family: var(--display); font-size: clamp(1.5rem, 6vw, 2.2rem); line-height: 1.15; margin: 0 0 .4rem; }
+  .scratch p { margin: 0; }
+  .scratch canvas { position: absolute; inset: 0; width: 100%; height: 100%; touch-action: none; cursor: grab; transition: opacity .8s; }
+  .scratch.done canvas { opacity: 0; pointer-events: none; }
+  .linkish { font: inherit; background: none; border: 0; color: var(--muted); text-decoration: underline; text-underline-offset: 4px; cursor: pointer; }
+
   @keyframes rise { from { transform: translate(-50%, 115%); } to { transform: translate(-50%, 50%); } }
-  @media (prefers-reduced-motion: reduce) { .sun { animation: none; } html { scroll-behavior: auto; } }
+  @media (prefers-reduced-motion: reduce) { .sun, .seal { animation: none; } .leaf, .cover > p, .cover > button { transition: none; } html { scroll-behavior: auto; } }
 
   /* ---------- Sections ---------- */
   section { padding: clamp(4rem, 9vw, 7rem) 1.5rem; }
@@ -81,6 +118,7 @@
   .btn.gold { background: var(--marigold); color: var(--night); }
   .btn.gold:hover { background: #f0ab42; }
   .mapcard { background: var(--mist); border-radius: 6px; padding: 2rem; }
+  .map { display: block; width: 100%; height: clamp(16rem, 45vw, 24rem); border: 0; border-radius: 6px; margin-top: 2.5rem; }
   .mapcard dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 0.6rem 1.2rem; }
   .mapcard dt { color: var(--muted); }
   .mapcard dd { margin: 0; font-weight: 500; }
@@ -131,6 +169,14 @@
 </head>
 <body>
 
+<div class="cover" id="cover">
+  <div class="leaf l" aria-hidden="true"></div>
+  <div class="leaf r" aria-hidden="true"></div>
+  <p class="who">The wedding of Mahisa and Karteek</p>
+  <button class="seal" id="seal" type="button" aria-label="Open the invitation">M<span>and</span>K</button>
+  <p class="hint">Tap the seal to open your invitation</p>
+</div>
+
 <header class="hero">
   <div class="hero-text">
     <p class="invite">Together with our families, we invite you to the wedding of</p>
@@ -142,11 +188,27 @@
   <div class="sea" aria-hidden="true"></div>
 </header>
 
+<section class="reveal" id="date">
+  <div class="wrap">
+    <h2>Save the date</h2>
+    <p>Scratch the card with your finger to see when.</p>
+    <div class="scratch" id="scratch">
+      <div>
+        <p class="big">18 and 19 December 2026</p>
+        <p>Palm Beach Hotel, Visakhapatnam</p>
+      </div>
+      <canvas id="scratch-canvas" aria-hidden="true"></canvas>
+    </div>
+    <button class="linkish" id="scratch-skip" type="button">Show the date without scratching</button>
+  </div>
+</section>
+
 <div class="countdown" id="countdown" hidden>
   <div class="wrap" role="timer" aria-label="Time until the reception">
     <span><b id="cd-d">0</b>days</span>
     <span><b id="cd-h">0</b>hours</span>
     <span><b id="cd-m">0</b>minutes</span>
+    <span><b id="cd-s">0</b>seconds</span>
     <span>until the reception</span>
   </div>
 </div>
@@ -193,6 +255,9 @@
           <dt>Reply by</dt><dd>Tue 15 Dec</dd>
         </dl>
       </div>
+    </div>
+    <div class="wrap">
+      <iframe class="map" title="Map showing Palm Beach Hotel, Visakhapatnam" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Palm+Beach+Hotel+Visakhapatnam&output=embed"></iframe>
     </div>
   </section>
 
@@ -280,6 +345,67 @@
   var CFG = window.WEDDING || {};
   var RECEPTION_START = "2026-12-18T19:00:00+05:30";
 
+  var calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var music = { wanted: false, start: null };
+
+  // ---- Confetti ----
+  function confetti() {
+    if (calm) return;
+    var c = document.createElement("canvas"); c.className = "confetti"; document.body.appendChild(c);
+    var w = c.width = innerWidth, h = c.height = innerHeight, g = c.getContext("2d"), t0 = performance.now();
+    var colors = ["#e39a2b", "#f6d9a8", "#ffffff", "#1d3350"];
+    var bits = []; for (var i = 0; i < 140; i++) bits.push({ x: w / 2, y: h * 0.45, vx: (Math.random() - 0.5) * 14, vy: -Math.random() * 13 - 3, s: 5 + Math.random() * 7, r: Math.random() * 6, c: colors[i % 4] });
+    (function frame(now) {
+      var age = now - t0; g.clearRect(0, 0, w, h);
+      bits.forEach(function (b) {
+        b.vy += 0.28; b.x += b.vx; b.y += b.vy; b.r += 0.2;
+        g.save(); g.translate(b.x, b.y); g.rotate(b.r); g.globalAlpha = Math.max(0, 1 - age / 3200); g.fillStyle = b.c; g.fillRect(-b.s / 2, -b.s / 4, b.s, b.s / 2); g.restore();
+      });
+      if (age < 3200) requestAnimationFrame(frame); else c.remove();
+    })(t0);
+  }
+
+  // ---- Cover: tap the seal, the doors open, the music starts ----
+  (function () {
+    var cover = document.getElementById("cover");
+    document.documentElement.classList.add("locked");
+    document.getElementById("seal").addEventListener("click", function () {
+      document.body.classList.add("opened");
+      document.documentElement.classList.remove("locked");
+      music.wanted = true; if (music.start) music.start();
+      setTimeout(function () { cover.hidden = true; }, calm ? 0 : 2000);
+    });
+  })();
+
+  // ---- Scratch card ----
+  (function () {
+    var box = document.getElementById("scratch"), c = document.getElementById("scratch-canvas"), skip = document.getElementById("scratch-skip");
+    var g = c.getContext("2d"), dpr = Math.min(window.devicePixelRatio || 1, 2), moves = 0, finished = false;
+    function paint() {
+      var r = box.getBoundingClientRect(); c.width = r.width * dpr; c.height = r.height * dpr;
+      var grad = g.createLinearGradient(0, 0, c.width, c.height); grad.addColorStop(0, "#f0b655"); grad.addColorStop(0.5, "#e39a2b"); grad.addColorStop(1, "#b9661a");
+      g.globalCompositeOperation = "source-over"; g.fillStyle = grad; g.fillRect(0, 0, c.width, c.height);
+      g.fillStyle = "rgba(255,255,255,.25)"; for (var i = 0; i < 500; i++) g.fillRect(Math.random() * c.width, Math.random() * c.height, dpr, dpr);
+      g.fillStyle = "#0f1a30"; g.textAlign = "center"; g.textBaseline = "middle"; g.font = (20 * dpr) + "px Marcellus, Georgia, serif"; g.fillText("Scratch here", c.width / 2, c.height / 2);
+    }
+    function finish() { if (finished) return; finished = true; box.classList.add("done"); skip.hidden = true; confetti(); }
+    function cleared() {
+      var d = g.getImageData(0, 0, c.width, c.height).data, clear = 0, n = 0;
+      for (var i = 3; i < d.length; i += 4 * 37) { n++; if (d[i] === 0) clear++; }
+      return clear / n;
+    }
+    function rub(e) {
+      var r = c.getBoundingClientRect();
+      g.globalCompositeOperation = "destination-out"; g.beginPath();
+      g.arc((e.clientX - r.left) * dpr, (e.clientY - r.top) * dpr, 26 * dpr, 0, Math.PI * 2); g.fill();
+      if (++moves % 8 === 0 && cleared() > 0.45) finish();
+    }
+    c.addEventListener("pointerdown", function (e) { c.setPointerCapture(e.pointerId); rub(e); });
+    c.addEventListener("pointermove", function (e) { if (e.buttons || e.pointerType === "touch") rub(e); });
+    skip.addEventListener("click", finish);
+    paint();
+  })();
+
   // ---- Countdown ----
   (function () {
     var box = document.getElementById("countdown");
@@ -288,13 +414,14 @@
       var ms = target - Date.now();
       if (ms <= 0) { box.hidden = true; return; }
       var mins = Math.floor(ms / 60000);
+      document.getElementById("cd-s").textContent = Math.floor(ms / 1000) % 60;
       document.getElementById("cd-d").textContent = Math.floor(mins / 1440);
       document.getElementById("cd-h").textContent = Math.floor((mins % 1440) / 60);
       document.getElementById("cd-m").textContent = mins % 60;
       box.hidden = false;
     }
     tick();
-    setInterval(tick, 30000);
+    setInterval(tick, 1000);
   })();
 
   // ---- Media: everything under media/ is listed in media-list.txt by the site build ----
@@ -341,6 +468,8 @@
       else { audio.pause(); label(); }
     });
     btn.hidden = false;
+    music.start = function () { if (audio.paused) audio.play().then(label, function (err) { console.error(err); }); };
+    if (music.wanted) music.start();
   }
 
   function youtubeId(link) {
