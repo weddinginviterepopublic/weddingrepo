@@ -324,7 +324,7 @@
 <main>
   <section id="story">
     <div class="wrap">
-      <h2>Here's to Always 🤍</h2>
+      <h2>Our Story</h2>
       <p>If someone had told us back in 2015, when we were 17 and sitting in the same college classroom, that we'd be getting married someday, we probably wouldn't have believed them!</p>
       <p>What started as a friendship somehow turned into love, and here we are, more than a decade later!</p>
       <p>Since then, we've moved countries, chased our dreams, survived long-distance, and figured out adulthood together (still figuring it out, actually!). We've been through the good days, the not-so-good days, and everything in between. Through it all, we've grown together, made countless memories, and remained best friends.</p>
@@ -575,10 +575,10 @@
   function petals() {
     if (calm) return;
     var c = document.createElement("canvas"); c.className = "petals"; document.body.appendChild(c);
-    var g = c.getContext("2d"), w, h, list = [], t0 = performance.now(), SPAWN = 16000, dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var g = c.getContext("2d"), w, h, list = [], t0 = performance.now(), SPAWN = 8000, dpr = Math.min(window.devicePixelRatio || 1, 2);
     function size() { w = innerWidth; h = innerHeight; c.width = w * dpr; c.height = h * dpr; g.setTransform(dpr, 0, 0, dpr, 0, 0); }
     size(); addEventListener("resize", size);
-    function make() { return { x: Math.random() * w, y: -24, s: 16 + Math.random() * 16, k: Math.floor(Math.random() * 8), vy: 0.7 + Math.random() * 1.2, sway: 0.5 + Math.random() * 1.1, p: Math.random() * 6.3, r: Math.random() * 6.3, vr: (Math.random() - 0.5) * 0.035, a: 0.75 + Math.random() * 0.25 }; }
+    function make() { return { x: Math.random() * w, y: -24, s: 10 + Math.random() * 10, k: Math.floor(Math.random() * 8), vy: 1.7 + Math.random() * 1.6, sway: 0.5 + Math.random() * 1.1, p: Math.random() * 6.3, r: Math.random() * 6.3, vr: (Math.random() - 0.5) * 0.035, a: 0.75 + Math.random() * 0.25 }; }
     (function frame(now) {
       var age = now - t0, ready = petalArt.complete && petalArt.naturalWidth;
       if (age > 900 && age < SPAWN && list.length < 60 && Math.random() < 0.3) list.push(make());
