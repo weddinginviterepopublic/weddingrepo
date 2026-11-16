@@ -1,6 +1,6 @@
 Artwork used on the site.
 
-- opening.mp4, opening-poster.jpg: the opening clip of the couple untying the ribbon (white backdrop, blended onto the doors)
+- opening-v2.mp4, opening-v2-poster.jpg: the opening clip of the couple untying the ribbon (white backdrop, blended onto the doors)
 - blossom-branch.webp, blossom-left.webp, blossom-right.webp: cut out from the blossom paintings
 - roses.jpg: the rose photo behind the footer
 
