@@ -89,6 +89,34 @@
   .rsvp p { margin-left: auto; margin-right: auto; color: #cfd8e3; }
   .rsvp .deadline { font-family: var(--display); font-size: clamp(1.5rem, 3.4vw, 2.2rem); color: var(--dawn); margin: 0 auto 1rem; }
 
+  .rsvp form { max-width: 34rem; margin: 2rem auto 0; text-align: left; display: grid; gap: 1.1rem; }
+  .rsvp label, .rsvp legend { display: block; font-weight: 600; color: #fff; margin-bottom: 0.35rem; padding: 0; }
+  .rsvp input[type=text], .rsvp select, .rsvp textarea { width: 100%; font: inherit; color: var(--ink); background: #fff; border: 2px solid transparent; border-radius: 6px; padding: 0.7rem 0.8rem; }
+  .rsvp fieldset { border: 0; margin: 0; padding: 0; }
+  .rsvp .choice { display: inline-flex; align-items: center; gap: 0.45rem; font-weight: 400; margin: 0 1.4rem 0.3rem 0; color: #e6ebf2; }
+  .rsvp .choice input { width: 1.15rem; height: 1.15rem; accent-color: var(--marigold); }
+  .rsvp .hp { position: absolute; left: -9999px; }
+  .rsvp button { border: 0; cursor: pointer; font: inherit; font-weight: 600; justify-self: start; margin-top: 0.4rem; }
+  .rsvp button[disabled] { opacity: 0.6; cursor: wait; }
+  .rsvp .status { margin: 0; min-height: 1.6em; color: var(--dawn); font-weight: 600; }
+  .rsvp .status.error { color: #ffb4a6; }
+
+  .gallery { background: #fff; }
+  .grid { columns: 3 15rem; column-gap: 0.8rem; margin-top: 2rem; }
+  .grid button { display: block; width: 100%; padding: 0; margin: 0 0 0.8rem; border: 0; background: none; cursor: zoom-in; break-inside: avoid; min-height: 6rem; background: var(--mist); border-radius: 4px; }
+  .grid img { display: block; width: 100%; height: auto; border-radius: 4px; }
+  dialog.lightbox { border: 0; padding: 0; background: transparent; max-width: 96vw; max-height: 96vh; }
+  dialog.lightbox::backdrop { background: rgba(15, 26, 48, 0.92); }
+  dialog.lightbox img { display: block; max-width: 96vw; max-height: 88vh; border-radius: 4px; }
+  .lb-bar { display: flex; justify-content: space-between; gap: 0.5rem; margin-top: 0.6rem; }
+  .lb-bar button { font: inherit; font-weight: 600; color: #fff; background: rgba(255,255,255,0.14); border: 0; border-radius: 999px; padding: 0.55rem 1.1rem; cursor: pointer; }
+
+  .videos .reel { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr)); gap: 1.2rem; margin-top: 2rem; }
+  .videos iframe, .videos video { width: 100%; aspect-ratio: 16 / 9; border: 0; border-radius: 6px; background: var(--night); display: block; }
+
+  .music { position: fixed; right: 1rem; bottom: 1rem; z-index: 20; font: inherit; font-weight: 600; color: var(--night); background: var(--dawn); border: 0; border-radius: 999px; padding: 0.7rem 1.2rem; cursor: pointer; box-shadow: 0 6px 20px rgba(15, 26, 48, 0.35); }
+  .music[aria-pressed=true] { background: var(--marigold); }
+
   .gifts p { font-size: 1.15rem; }
 
   footer { background: var(--deep); color: #cfd8e3; text-align: center; padding: 2.5rem 1.5rem; }
@@ -168,12 +196,58 @@
     </div>
   </section>
 
+  <section class="gallery" id="photos" hidden>
+    <div class="wrap">
+      <h2>The two of us</h2>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <section class="videos" id="videos" hidden>
+    <div class="wrap">
+      <h2>Videos</h2>
+      <div class="reel" id="reel"></div>
+    </div>
+  </section>
+
   <section class="rsvp" id="rsvp">
     <div class="wrap">
       <h2>Will you be there?</h2>
       <p class="deadline">Please reply by Tuesday, 15 December 2026</p>
-      <p id="rsvp-text">Let us know who is coming so we can plan seating and food for everyone.</p>
-      <a class="btn gold" id="rsvp-btn" target="_blank" rel="noopener" hidden>Send your reply</a>
+      <p>Let us know who is coming so we can plan seating and food for everyone.</p>
+      <form id="rsvp-form" hidden>
+        <div>
+          <label for="f-name">Your name</label>
+          <input type="text" id="f-name" name="name" required autocomplete="name">
+        </div>
+        <div>
+          <label for="f-contact">Phone or email</label>
+          <input type="text" id="f-contact" name="contact" autocomplete="tel">
+        </div>
+        <fieldset>
+          <legend>Will you join us?</legend>
+          <label class="choice"><input type="radio" name="attending" value="Yes" required> Yes, I will be there</label>
+          <label class="choice"><input type="radio" name="attending" value="No"> Sorry, I can't make it</label>
+        </fieldset>
+        <div>
+          <label for="f-guests">How many people, including you?</label>
+          <select id="f-guests" name="guests">
+            <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option>
+          </select>
+        </div>
+        <fieldset>
+          <legend>Which events?</legend>
+          <label class="choice"><input type="checkbox" name="events" value="Reception" checked> Reception, Fri 7:00 PM</label>
+          <label class="choice"><input type="checkbox" name="events" value="Muhurtham" checked> Muhurtham, Sat 4:30 AM</label>
+        </fieldset>
+        <div>
+          <label for="f-message">A note for us (optional)</label>
+          <textarea id="f-message" name="message" rows="3"></textarea>
+        </div>
+        <div class="hp" aria-hidden="true"><label>Leave this empty <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+        <button class="btn gold" type="submit">Send reply</button>
+        <p class="status" id="rsvp-status" role="status"></p>
+      </form>
     </div>
   </section>
 
@@ -185,24 +259,28 @@
   </section>
 </main>
 
+<button class="music" id="music-btn" type="button" aria-pressed="false" hidden>Play music</button>
+
+<dialog class="lightbox" id="lightbox" aria-label="Photo viewer">
+  <img id="lb-img" alt="">
+  <div class="lb-bar">
+    <button type="button" id="lb-prev">Previous</button>
+    <button type="button" id="lb-close">Close</button>
+    <button type="button" id="lb-next">Next</button>
+  </div>
+</dialog>
+
 <footer>
   <p class="sig">Mahisa Sanofer and Karteek Edumudi</p>
   <p>18 and 19 December 2026, Visakhapatnam</p>
 </footer>
 
+<script src="config.js"></script>
 <script>
-  // ---- Settings you can edit ----
-  // Paste your RSVP link here (a Google Form, a WhatsApp link like https://wa.me/91XXXXXXXXXX, etc.).
-  // While it is empty, the reply button stays hidden.
-  var RSVP_URL = "";
+  var CFG = window.WEDDING || {};
   var RECEPTION_START = "2026-12-18T19:00:00+05:30";
 
-  if (RSVP_URL) {
-    var b = document.getElementById("rsvp-btn");
-    b.href = RSVP_URL;
-    b.hidden = false;
-  }
-
+  // ---- Countdown ----
   (function () {
     var box = document.getElementById("countdown");
     var target = new Date(RECEPTION_START).getTime();
@@ -217,6 +295,107 @@
     }
     tick();
     setInterval(tick, 30000);
+  })();
+
+  // ---- Media: everything under media/ is listed in media-list.txt by the site build ----
+  function url(path) { return path.replace(/^\//, "").split("/").map(encodeURIComponent).join("/"); }
+  function pick(paths, folder, exts) {
+    return paths.filter(function (p) { return p.indexOf("/media/" + folder + "/") === 0 && exts.test(p); }).sort();
+  }
+
+  fetch("media-list.txt", { cache: "no-cache" })
+    .then(function (r) { if (!r.ok) throw new Error("media-list.txt: HTTP " + r.status); return r.text(); })
+    .then(function (text) {
+      var paths = text.split("\n").map(function (l) { return l.trim(); }).filter(function (l) { return l.charAt(0) === "/"; });
+      showPhotos(pick(paths, "photos", /\.(jpe?g|png|webp|gif|avif)$/i));
+      showMusic(pick(paths, "music", /\.(mp3|m4a|ogg|wav)$/i));
+      showVideos(pick(paths, "videos", /\.(mp4|webm|mov)$/i));
+    })
+    .catch(function (err) { console.error(err); showVideos([]); });
+
+  function showPhotos(photos) {
+    if (!photos.length) return;
+    var grid = document.getElementById("grid"), box = document.getElementById("lightbox"), big = document.getElementById("lb-img"), at = 0;
+    function open(i) { at = (i + photos.length) % photos.length; big.src = url(photos[at]); big.alt = "Photo " + (at + 1) + " of " + photos.length; if (!box.open) box.showModal(); }
+    photos.forEach(function (p, i) {
+      var b = document.createElement("button"), img = document.createElement("img");
+      b.type = "button"; b.setAttribute("aria-label", "Open photo " + (i + 1));
+      img.src = url(p); img.alt = ""; img.loading = "lazy";
+      b.appendChild(img); b.addEventListener("click", function () { open(i); }); grid.appendChild(b);
+    });
+    document.getElementById("lb-prev").addEventListener("click", function () { open(at - 1); });
+    document.getElementById("lb-next").addEventListener("click", function () { open(at + 1); });
+    document.getElementById("lb-close").addEventListener("click", function () { box.close(); });
+    box.addEventListener("keydown", function (e) { if (e.key === "ArrowLeft") open(at - 1); if (e.key === "ArrowRight") open(at + 1); });
+    box.addEventListener("click", function (e) { if (e.target === box) box.close(); });
+    document.getElementById("photos").hidden = false;
+  }
+
+  function showMusic(tracks) {
+    if (!tracks.length) return;
+    var btn = document.getElementById("music-btn"), audio = new Audio(url(tracks[0]));
+    audio.loop = true; audio.preload = "none";
+    function label() { var on = !audio.paused; btn.setAttribute("aria-pressed", on); btn.textContent = on ? "Pause music" : "Play music"; }
+    btn.addEventListener("click", function () {
+      if (audio.paused) audio.play().then(label, function (err) { console.error(err); btn.textContent = "Music could not play"; });
+      else { audio.pause(); label(); }
+    });
+    btn.hidden = false;
+  }
+
+  function youtubeId(link) {
+    var m = String(link).match(/(?:youtu\.be\/|[?&]v=|\/shorts\/|\/embed\/)([\w-]{11})/);
+    return m ? m[1] : null;
+  }
+  function showVideos(files) {
+    var reel = document.getElementById("reel"), count = 0;
+    (CFG.videos || []).forEach(function (link) {
+      var id = youtubeId(link);
+      if (!id) { console.error("config.js: not a YouTube link: " + link); return; }
+      var f = document.createElement("iframe");
+      f.src = "https://www.youtube-nocookie.com/embed/" + id; f.title = "Wedding video"; f.loading = "lazy";
+      f.allow = "accelerometer; encrypted-media; picture-in-picture; fullscreen"; f.allowFullscreen = true;
+      reel.appendChild(f); count++;
+    });
+    files.forEach(function (p) {
+      var v = document.createElement("video");
+      v.src = url(p); v.controls = true; v.preload = "metadata"; v.playsInline = true;
+      reel.appendChild(v); count++;
+    });
+    if (count) document.getElementById("videos").hidden = false;
+  }
+
+  // ---- RSVP: posts to the Google Apps Script web app, which adds a row to the sheet ----
+  (function () {
+    var form = document.getElementById("rsvp-form"), status = document.getElementById("rsvp-status");
+    if (!CFG.rsvpUrl) return;
+    form.hidden = false;
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var data = new FormData(form);
+      if (data.get("website")) return; // spam trap
+      var body = new URLSearchParams();
+      body.set("name", data.get("name").trim());
+      body.set("contact", data.get("contact").trim());
+      body.set("attending", data.get("attending"));
+      body.set("guests", data.get("attending") === "Yes" ? data.get("guests") : "0");
+      body.set("events", data.get("attending") === "Yes" ? data.getAll("events").join(", ") : "");
+      body.set("message", data.get("message").trim());
+      var btn = form.querySelector("button[type=submit]");
+      btn.disabled = true; status.className = "status"; status.textContent = "Sending your reply";
+      fetch(CFG.rsvpUrl, { method: "POST", body: body })
+        .then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+        .then(function (res) {
+          if (!res.ok) throw new Error(res.error || "The sheet did not accept the reply");
+          form.reset(); status.textContent = "Reply sent. Thank you!";
+        })
+        .catch(function (err) {
+          console.error(err);
+          status.className = "status error";
+          status.textContent = "Your reply was not sent. Check your connection and send it again.";
+        })
+        .then(function () { btn.disabled = false; });
+    });
   })();
 </script>
 </body>
