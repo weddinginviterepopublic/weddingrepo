@@ -253,12 +253,12 @@
   .grid button { display: block; width: 100%; padding: 0; margin: 0 0 .6rem; border: 0; background: var(--blush); cursor: zoom-in; break-inside: avoid; min-height: 6rem; border-radius: 8px; overflow: hidden; }
   .grid img { display: block; width: 100%; height: auto; }
   /* A single photo: portrait, arch-topped, in the same double gold frame as the invitation */
-  .grid.one { position: relative; width: min(100% - 2rem, 18rem); margin: 3rem auto 1rem; }
+  .grid.one { position: relative; width: min(100% - 1.6rem, 34rem); margin: 3rem auto 1rem; }
   .grid.one button { position: relative; overflow: visible; margin: 0; min-height: 0; padding: 0 !important; border: 0 !important; background: none !important; box-shadow: none; border-radius: 0; }
-  .grid.one button::before, .grid.one button::after { content: ""; position: absolute; border: solid var(--gold); border-radius: 50% 50% 0 0 / 30% 30% 0 0; pointer-events: none; }
-  .grid.one button::before { inset: -14px; border-width: 1.5px; }
-  .grid.one button::after { inset: -7px; border-width: 1px; opacity: .6; }
-  .grid.one img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 44% 50%; border-radius: 50% 50% 0 0 / 30% 30% 0 0; box-shadow: 0 16px 34px rgba(120,70,60,.2); }
+  .grid.one button::before, .grid.one button::after { content: ""; position: absolute; border: solid var(--gold); border-radius: 14px; pointer-events: none; }
+  .grid.one button::before { inset: -11px; border-width: 1.5px; }
+  .grid.one button::after { inset: -5px; border-width: 1px; opacity: .6; }
+  .grid.one img { width: 100%; height: auto; aspect-ratio: auto; object-fit: contain; border-radius: 6px; box-shadow: 0 16px 34px rgba(120,70,60,.2); }
   dialog.lightbox { border: 0; padding: 0; background: transparent; max-width: 96vw; max-height: 96vh; }
   dialog.lightbox::backdrop { background: rgba(75, 57, 53, .92); }
   dialog.lightbox img { display: block; max-width: 96vw; max-height: 88vh; border-radius: 6px; }
