@@ -604,7 +604,7 @@
       setTimeout(function () {
         sign.classList.remove("up"); bus.classList.add("driving");
         bus.animate([{ transform: stop }, { transform: "translateX(110vw)" }], { duration: 2200, easing: "cubic-bezier(.6,0,.9,.5)", fill: "forwards" }).onfinish = function () { bus.classList.remove("driving"); ride.hidden = true; };
-      }, 5400);
+      }, 3400);
     };
   }
 
