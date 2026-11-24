@@ -252,6 +252,13 @@
   .grid { columns: 2; column-gap: .6rem; margin-top: 1.6rem; }
   .grid button { display: block; width: 100%; padding: 0; margin: 0 0 .6rem; border: 0; background: var(--blush); cursor: zoom-in; break-inside: avoid; min-height: 6rem; border-radius: 8px; overflow: hidden; }
   .grid img { display: block; width: 100%; height: auto; }
+  /* A single photo: portrait, arch-topped, in the same double gold frame as the invitation */
+  .grid.one { position: relative; width: min(100%, 19rem); margin: 2.4rem auto 0; }
+  .grid.one::before { content: ""; position: absolute; z-index: 2; left: -3.4rem; top: -1.2rem; width: 58%; aspect-ratio: 372 / 366; background: url("media/art/blossom-left.webp") left top / contain no-repeat; pointer-events: none; }
+  .grid.one button { position: relative; margin: 0; aspect-ratio: 4 / 5; min-height: 0; padding: 9px !important; border: 1.5px solid var(--gold) !important; background: #fffaf2 !important;
+    border-radius: 50% 50% 10px 10px / 30% 30% 10px 10px; box-shadow: 0 14px 34px rgba(120,70,60,.18); overflow: visible; }
+  .grid.one button::after { content: ""; position: absolute; inset: 4px; border: 1px solid rgba(201,164,92,.7); border-radius: inherit; pointer-events: none; }
+  .grid.one img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 60%; border-radius: 50% 50% 6px 6px / 29% 29% 6px 6px; }
   dialog.lightbox { border: 0; padding: 0; background: transparent; max-width: 96vw; max-height: 96vh; }
   dialog.lightbox::backdrop { background: rgba(75, 57, 53, .92); }
   dialog.lightbox img { display: block; max-width: 96vw; max-height: 88vh; border-radius: 6px; }
