@@ -11,6 +11,7 @@
 <style>
   @font-face { font-family: "Playfair Display"; font-weight: 400; src: url("fonts/playfair-display-latin-400-normal.woff2") format("woff2"); font-display: swap; }
   @font-face { font-family: "Playfair Display"; font-weight: 500; src: url("fonts/playfair-display-latin-500-normal.woff2") format("woff2"); font-display: swap; }
+  @font-face { font-family: "Playfair Display"; font-weight: 500; font-style: italic; src: url("fonts/playfair-display-latin-500-italic.woff2") format("woff2"); font-display: swap; }
   @font-face { font-family: "Cinzel"; font-weight: 500; src: url("fonts/cinzel-latin-500-normal.woff2") format("woff2"); font-display: swap; }
   @font-face { font-family: "Cormorant Garamond"; font-weight: 500; src: url("fonts/cormorant-garamond-latin-500-normal.woff2") format("woff2"); font-display: swap; }
   @font-face { font-family: "Cormorant Garamond"; font-weight: 500; font-style: italic; src: url("fonts/cormorant-garamond-latin-500-italic.woff2") format("woff2"); font-display: swap; }
@@ -38,7 +39,7 @@
       linear-gradient(180deg, var(--cream) 0%, #f8eadf 50%, var(--cream) 100%); }
   section, .hero, .countdown, footer { padding-inline: calc(var(--vine-w) + 1.1rem); text-align: center; }
   section { padding-block: 3.6rem 3.2rem; }
-  h2 { font-family: var(--script); font-weight: 400; font-size: clamp(1.85rem, 7.4vw, 2.4rem); line-height: 1.2; letter-spacing: .01em; margin: 0 0 1.2rem; color: var(--rose); }
+  h2 { font-family: var(--script); font-style: italic; font-weight: 500; font-weight: 400; font-size: clamp(1.85rem, 7.4vw, 2.4rem); line-height: 1.2; letter-spacing: .01em; margin: 0 0 1.2rem; color: var(--rose); }
   h2::before { content: ""; display: block; width: 32px; height: 32px; margin: 0 auto .5rem; background: center / contain no-repeat; }
   h2::after { content: ""; display: block; width: 180px; max-width: 70%; height: 16px; margin: .5rem auto 0; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='16'%3E%3Cpath d='M0 8H72M108 8H180' stroke='%23d3a3a8'/%3E%3Cpath d='M90 14C80 7 82 2 86 2C88 2 90 4 90 5C90 4 92 2 94 2C98 2 100 7 90 14Z' fill='%23b9606f'/%3E%3C/svg%3E") center / contain no-repeat; }
   #date h2::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32' fill='none' stroke='%23a8505f' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M16 27C6 19 4 14 4 10.5C4 7 6.8 5 9.8 5C12.4 5 14.8 6.5 16 9C17.2 6.5 19.6 5 22.2 5C25.2 5 28 7 28 10.5C28 14 26 19 16 27Z'/%3E%3C/svg%3E"); }
@@ -59,7 +60,7 @@
   .hero-text::before { content: ""; position: absolute; inset: 0 3.75% 3.75%; border: solid var(--gold); border-width: 0 1px 1px; pointer-events: none; }
   .hero p { margin: 0 auto; }
   .invite { max-width: 22ch; }
-  .names { font-family: var(--script); font-weight: 400; font-size: clamp(3.6rem, 17vw, 5.4rem); line-height: 1.05; margin: .8rem 0 1rem;
+  .names { font-family: var(--script); font-style: italic; font-weight: 500; font-weight: 400; font-size: clamp(3.6rem, 17vw, 5.4rem); line-height: 1.05; margin: .8rem 0 1rem;
     background: linear-gradient(180deg, #c0697a, var(--rose-deep)); -webkit-background-clip: text; background-clip: text; color: transparent; }
   .names span:not(.amp) { white-space: nowrap; font-size: min(.5em, 8vw); padding-inline: .15em; line-height: 1.2; }
   .names span { display: block; padding: .08em .15em; }
@@ -108,13 +109,20 @@
   /* The opening clip has a white backdrop; multiply lets the doors show through it, so the two of us stand in front of the doors. */
   .cover { display: block; padding: 0; }
   .leaf::before, .leaf::after { display: none; }
-  .intro { position: absolute; z-index: 1; left: 50%; bottom: 0; translate: -50% 13%; width: 100vw; height: auto; aspect-ratio: 720 / 1280; object-fit: cover; mix-blend-mode: multiply; pointer-events: none; transition: opacity 1.6s ease .5s; }
+  .intro { position: absolute; z-index: 1; left: 50%; bottom: 0; translate: -50% 15%; width: 100vw; height: auto; aspect-ratio: 720 / 1280; object-fit: cover; mix-blend-mode: multiply; pointer-events: none; transition: opacity 1.6s ease .5s; }
   /* Shorter phone screens: lift the title so the couple never stand behind it */
-  @media (max-aspect-ratio: 9/16) and (max-height: 760px) {
+  @media (max-aspect-ratio: 3/4) and (max-height: 760px) {
     .cover > .who { top: 4svh; padding-top: .5rem; }
   }
+  @media (max-aspect-ratio: 3/4) and (max-height: 700px) {
+    .cover > .who { top: 1.5svh; }
+    .cover .who .nm { font-size: clamp(1.6rem, 7.4vw, 2rem); }
+  }
+  @media (max-aspect-ratio: 3/4) and (max-height: 600px) {
+    .intro { translate: -50% 25%; }
+  }
   /* Wide screens: the clip is narrower than the window, so fade its sides into the doors */
-  @media (min-aspect-ratio: 9/16) {
+  @media (min-aspect-ratio: 3/4) {
     .intro { width: auto; height: 74svh; translate: -50% 0;
       -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 16%, #000 84%, transparent 100%); mask-image: linear-gradient(90deg, transparent 0, #000 16%, #000 84%, transparent 100%); }
   }
@@ -122,7 +130,7 @@
     background: radial-gradient(closest-side, rgba(253,246,238,.92), rgba(253,246,238,.75) 60%, rgba(253,246,238,0)); text-shadow: none; }
   .cover .who span { display: block; }
   .cover .who .kicker { font-family: var(--caps); font-size: clamp(.82rem, 3.6vw, 1rem); letter-spacing: .3em; text-indent: .3em; color: var(--rose-deep); margin-bottom: .55rem; }
-  .cover .who .nm { font-family: var(--script); font-weight: 500; font-size: clamp(1.95rem, 8.6vw, 2.7rem); line-height: 1.2; color: #7d2f40; white-space: nowrap; }
+  .cover .who .nm { font-family: var(--script); font-style: italic; font-weight: 500; font-weight: 500; font-size: clamp(1.95rem, 8.6vw, 2.7rem); line-height: 1.2; color: #7d2f40; white-space: nowrap; }
   .cover .who .and { font-family: var(--display); font-style: normal; font-size: 1.15rem; color: var(--muted); margin: .05rem 0 .1rem; }
   .cover > .sp.c1 { width: min(82vw, 27rem); translate: 0 -40%; }
   /* Sharp text: no transforms on the button itself (they soften lettering); the gold ring does the pulsing. */
@@ -212,7 +220,7 @@
   .day { padding: 1.6rem 1.2rem; background: rgba(255,255,255,.62); border: 1px solid var(--gold); border-radius: 10px; box-shadow: inset 0 0 0 4px rgba(255,255,255,.6), inset 0 0 0 5px rgba(201,164,92,.35); }
   .day p { margin: 0 0 .4rem; }
   .day .date { font-size: 1rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
-  .day h3 { font-family: var(--script); font-weight: 400; font-size: 1.9rem; line-height: 1.2; margin: .2rem 0; color: var(--rose); }
+  .day h3 { font-family: var(--script); font-style: italic; font-weight: 500; font-weight: 400; font-size: 1.9rem; line-height: 1.2; margin: .2rem 0; color: var(--rose); }
   .day .time { font-weight: 600; font-size: 2rem; line-height: 1.1; color: var(--ink); }
   .day .note { font-size: 1.05rem; color: var(--muted); }
   .cal { display: inline-block; margin-top: .6rem; font-size: 1.05rem; color: var(--rose-deep); text-underline-offset: 4px; }
@@ -234,7 +242,7 @@
 
   #story h2::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32' fill='none' stroke='%23a8505f' stroke-width='1.5'%3E%3Ccircle cx='12' cy='18' r='8'/%3E%3Ccircle cx='20' cy='18' r='8'/%3E%3Cpath d='M10 8L12 5L14 8' stroke-linejoin='round'/%3E%3C/svg%3E"); }
   #story p { text-align: center; }
-  #story .byline { font-family: var(--script); font-size: 1.5rem; line-height: 1.2; color: var(--rose); margin: 1.4rem 0 0; }
+  #story .byline { font-family: var(--script); font-style: italic; font-weight: 500; font-size: 1.5rem; line-height: 1.2; color: var(--rose); margin: 1.4rem 0 0; }
   .grid.one { columns: 1; }
   .grid button { border: 1px solid var(--gold) !important; padding: 5px !important; background: #fffaf2 !important; box-shadow: 0 8px 22px rgba(120,70,60,.16); }
   .grid img { border-radius: 4px; }
@@ -261,6 +269,8 @@
   .rsvp .opt small { display: block; font-size: .92rem; color: var(--muted); line-height: 1.3; }
   .rsvp .choice:has(.opt) { align-items: flex-start; margin-bottom: .55rem; }
   .rsvp .choice:has(.opt) input { margin-top: .3rem; }
+  .rsvp .stay-where { margin: .5rem 0 0 1.9rem; }
+  .rsvp .stay-where .sub { margin: 0 0 .3rem; font-size: 1.05rem; color: var(--muted); }
   .rsvp .choice input { width: 1.15rem; height: 1.15rem; accent-color: var(--rose); flex: none; }
   .rsvp .hp { position: absolute; left: -9999px; }
   .rsvp button[type=submit] { justify-self: stretch; margin-top: .3rem; border-radius: 8px; }
@@ -277,7 +287,7 @@
   .bus-sign::after { content: ""; position: absolute; left: 50%; top: 100%; width: 0; height: 0; margin-left: -9px; border: 9px solid transparent; border-top-color: var(--gold); }
   .bus-sign.up { transform: scale(1); }
   .bus-sign p { margin: 0; }
-  .bus-sign .s1 { font-family: var(--script); font-size: clamp(1.35rem, 5.6vw, 1.7rem); line-height: 1.15; color: var(--rose); }
+  .bus-sign .s1 { font-family: var(--script); font-style: italic; font-weight: 500; font-size: clamp(1.35rem, 5.6vw, 1.7rem); line-height: 1.15; color: var(--rose); }
   .bus-sign .s2 { font-size: 1.05rem; color: var(--muted); }
   .bus .wheel { transform-box: view-box; }
   @keyframes spin-wheel { to { transform: rotate(360deg); } }
@@ -296,7 +306,7 @@
   .music[aria-pressed=true] { background: var(--rose-deep); }
 
   footer { padding-block: 1rem 17.5rem; }
-  footer .sig { font-family: var(--script); font-size: clamp(1.8rem, 8vw, 2.2rem); line-height: 1.15; color: var(--rose); margin: 0 0 .3rem; }
+  footer .sig { font-family: var(--script); font-style: italic; font-weight: 500; font-size: clamp(1.8rem, 8vw, 2.2rem); line-height: 1.15; color: var(--rose); margin: 0 0 .3rem; }
   footer .sig span { display: block; white-space: nowrap; }
   footer .sig .and { font-family: var(--display); font-style: normal; font-size: 1.15rem; color: var(--muted); margin: .1rem 0; }
   footer p { margin: 0; color: var(--muted); }
@@ -463,14 +473,19 @@
         </div>
         <fieldset>
           <legend>Which events?</legend>
-          <label class="choice"><input type="checkbox" name="events" value="Reception" checked> <span class="opt">Reception<small>Visakhapatnam, Fri 18 Dec, 7:00 PM</small></span></label>
-          <label class="choice"><input type="checkbox" name="events" value="Muhurtham" checked> <span class="opt">Muhurtham<small>Visakhapatnam, Sat 19 Dec, 4:30 AM</small></span></label>
+          <label class="choice"><input type="checkbox" name="events" value="Reception"> <span class="opt">Reception<small>Visakhapatnam, Fri 18 Dec, 7:00 PM</small></span></label>
+          <label class="choice"><input type="checkbox" name="events" value="Muhurtham"> <span class="opt">Muhurtham<small>Visakhapatnam, Sat 19 Dec, 4:30 AM</small></span></label>
           <label class="choice"><input type="checkbox" name="tiruppur" value="Yes"> <span class="opt">Reception in Tiruppur<small>Tiruppur, Sun 27 Dec, 11:00 AM</small></span></label>
         </fieldset>
         <fieldset id="f-stay">
           <legend>Do you need accommodation?</legend>
           <label class="choice"><input type="radio" name="accommodation" value="Yes" required> Yes</label>
           <label class="choice"><input type="radio" name="accommodation" value="No"> No</label>
+          <div class="stay-where" id="f-stay-where" hidden>
+            <p class="sub">Where do you need a stay?</p>
+            <label class="choice"><input type="checkbox" name="stay_city" value="Visakhapatnam"> Visakhapatnam</label>
+            <label class="choice"><input type="checkbox" name="stay_city" value="Tiruppur"> Tiruppur</label>
+          </div>
         </fieldset>
         <div>
           <label for="f-message">A note for us (optional)</label>
@@ -790,11 +805,23 @@
       var coming = e.target.value === "Yes";
       stay.hidden = !coming;
       stay.querySelectorAll("input").forEach(function (i) { i.required = coming && i.value === "Yes"; if (!coming) i.checked = false; });
+      if (!coming) where.hidden = true;
+    });
+    var where = document.getElementById("f-stay-where");
+    form.addEventListener("change", function (e) {
+      if (e.target.name !== "accommodation") return;
+      where.hidden = e.target.value !== "Yes";
+      if (where.hidden) where.querySelectorAll("input").forEach(function (i) { i.checked = false; });
     });
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       var data = new FormData(form);
       if (data.get("website")) return; // spam trap
+      var coming = data.get("attending") === "Yes";
+      var problem = !coming ? "" :
+        (data.getAll("events").length === 0 && !data.get("tiruppur")) ? "Please choose at least one event." :
+        (data.get("accommodation") === "Yes" && data.getAll("stay_city").length === 0) ? "Please choose where you need a stay." : "";
+      if (problem) { status.className = "status error"; status.textContent = problem; return; }
       var body = new URLSearchParams();
       body.set("name", data.get("name").trim());
       body.set("contact", data.get("contact").trim());
@@ -802,7 +829,7 @@
       body.set("guests", data.get("attending") === "Yes" ? data.get("guests") : "0");
       body.set("events", data.get("attending") === "Yes" ? data.getAll("events").join(", ") : "");
       body.set("tiruppur", data.get("attending") === "Yes" ? (data.get("tiruppur") ? "Yes" : "No") : "");
-      body.set("accommodation", data.get("attending") === "Yes" ? (data.get("accommodation") || "") : "");
+      body.set("accommodation", !coming ? "" : data.get("accommodation") === "Yes" ? "Yes: " + data.getAll("stay_city").join(", ") : (data.get("accommodation") || ""));
       body.set("message", data.get("message").trim());
       var btn = form.querySelector("button[type=submit]");
       btn.disabled = true; status.className = "status"; status.textContent = "Sending your reply";
