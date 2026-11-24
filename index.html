@@ -3,13 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sai Karteek &amp; Mahisa | 18–19 December 2026, Visakhapatnam</title>
-<meta name="description" content="Sai Karteek and Mahisa are getting married at Palm Beach Hotel, Visakhapatnam, on 18 and 19 December 2026.">
-<meta property="og:title" content="Sai Karteek &amp; Mahisa are getting married">
+<title>Sai Karteek &amp; Mahisa Sanofer | 18–19 December 2026, Visakhapatnam</title>
+<meta name="description" content="Sai Karteek and Mahisa Sanofer are getting married at Palm Beach Hotel, Visakhapatnam, on 18 and 19 December 2026.">
+<meta property="og:title" content="Sai Karteek &amp; Mahisa Sanofer are getting married">
 <meta property="og:description" content="Palm Beach Hotel, Visakhapatnam. Reception 18 December, Muhurtham 19 December 2026.">
 <meta name="theme-color" content="#fbf2e7">
 <style>
-  @font-face { font-family: "Great Vibes"; src: url("fonts/great-vibes-latin-400-normal.woff2") format("woff2"); font-display: swap; }
+  @font-face { font-family: "Pinyon Script"; src: url("fonts/pinyon-script-latin-400-normal.woff2") format("woff2"); font-display: swap; }
+  @font-face { font-family: "Cinzel"; font-weight: 500; src: url("fonts/cinzel-latin-500-normal.woff2") format("woff2"); font-display: swap; }
   @font-face { font-family: "Cormorant Garamond"; font-weight: 500; src: url("fonts/cormorant-garamond-latin-500-normal.woff2") format("woff2"); font-display: swap; }
   @font-face { font-family: "Cormorant Garamond"; font-weight: 500; font-style: italic; src: url("fonts/cormorant-garamond-latin-500-italic.woff2") format("woff2"); font-display: swap; }
   @font-face { font-family: "Cormorant Garamond"; font-weight: 600; src: url("fonts/cormorant-garamond-latin-600-normal.woff2") format("woff2"); font-display: swap; }
@@ -17,7 +18,8 @@
     --cream: #fbf2e7; --blush: #f4e0d5; --petal: #f3c9cc; --rose: #a8505f; --rose-deep: #8a3c4b;
     --gold: #c9a45c; --ink: #4b3935; --muted: #8b7169;
     --display: "Cormorant Garamond", "Palatino Linotype", Palatino, Georgia, serif;
-    --script: "Great Vibes", "Snell Roundhand", "Apple Chancery", cursive;
+    --script: "Pinyon Script", "Snell Roundhand", "Apple Chancery", cursive;
+    --caps: "Cinzel", "Trajan Pro", "Cormorant Garamond", serif;
     --vine-l: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='40'%3E%3Cpath d='M10 0V40' stroke='%23c9a45c' stroke-width='2'/%3E%3Cpath d='M15 0V40' stroke='%23c9a45c' stroke-width='.8'/%3E%3C/svg%3E"); --vine-r: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='40'%3E%3Cpath d='M14 0V40' stroke='%23c9a45c' stroke-width='2'/%3E%3Cpath d='M9 0V40' stroke='%23c9a45c' stroke-width='.8'/%3E%3C/svg%3E"); --vine-w: 24px;
   }
   * { box-sizing: border-box; }
@@ -58,8 +60,7 @@
   .invite { font-style: italic; max-width: 22ch; }
   .names { font-family: var(--script); font-weight: 400; font-size: clamp(3.6rem, 17vw, 5.4rem); line-height: 1.05; margin: .8rem 0 1rem;
     background: linear-gradient(180deg, #c0697a, var(--rose-deep)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-  .cover .nw { white-space: nowrap; }
-  .names span:first-child { white-space: nowrap; font-size: min(.8em, 12.2vw); }
+  .names span:not(.amp) { white-space: nowrap; font-size: min(.72em, 10.2vw); padding-inline: .3em; }
   .names span { display: block; padding: .08em .15em; }
   .names .amp { font-family: var(--display); font-style: italic; font-size: .3em; -webkit-text-fill-color: var(--muted); }
   .when { font-weight: 600; font-size: 1.4rem; letter-spacing: .03em; }
@@ -108,7 +109,12 @@
   .leaf::before, .leaf::after { display: none; }
   .intro { position: absolute; z-index: 1; left: 50%; bottom: 0; translate: -50% 0; height: min(76svh, 177.78vw); aspect-ratio: 720 / 1280; object-fit: cover; mix-blend-mode: multiply; pointer-events: none; transition: opacity 1.6s ease .5s;
     -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 4%, #000 96%, transparent 100%); mask-image: linear-gradient(90deg, transparent 0, #000 4%, #000 96%, transparent 100%); }
-  .cover > .who { position: absolute; z-index: 2; top: 15.5svh; left: 0; right: 0; margin: 0 auto; max-width: none; font-size: clamp(1.6rem, 7vw, 2.4rem); line-height: 1.12; }
+  .cover > .who { position: absolute; z-index: 2; top: 12.5svh; left: 0; right: 0; margin: 0 auto; max-width: none; padding: .9rem 1rem 1.1rem; line-height: 1;
+    background: radial-gradient(closest-side, rgba(253,246,238,.92), rgba(253,246,238,.75) 60%, rgba(253,246,238,0)); text-shadow: none; }
+  .cover .who span { display: block; }
+  .cover .who .kicker { font-family: var(--caps); font-size: clamp(.82rem, 3.6vw, 1rem); letter-spacing: .3em; text-indent: .3em; color: var(--rose-deep); margin-bottom: .55rem; }
+  .cover .who .nm { font-family: var(--script); font-size: clamp(2.5rem, 11.5vw, 3.6rem); line-height: 1.12; color: #7d2f40; white-space: nowrap; }
+  .cover .who .and { font-family: var(--display); font-style: italic; font-size: 1.15rem; color: var(--muted); margin: .05rem 0 .1rem; }
   .cover > .sp.c1 { width: min(82vw, 27rem); translate: 0 -40%; }
   /* Sharp text: no transforms on the button itself (they soften lettering); the gold ring does the pulsing. */
   .cover > .seal { position: absolute; z-index: 2; left: 0; right: 0; bottom: 4svh; margin: 0 auto; width: max-content; padding: .9rem 2.3rem; opacity: 1;
@@ -243,6 +249,9 @@
   .rsvp input[type=text], .rsvp select, .rsvp textarea { width: 100%; font: inherit; color: var(--ink); background: rgba(255,255,255,.85); border: 1px solid #d9b9b4; border-radius: 8px; padding: .6rem .75rem; }
   .rsvp fieldset { border: 0; margin: 0; padding: 0; }
   .rsvp .choice { display: flex; align-items: center; gap: .5rem; font-weight: 500; margin: 0 0 .3rem; }
+  .rsvp .opt small { display: block; font-size: .92rem; color: var(--muted); line-height: 1.3; }
+  .rsvp .choice:has(.opt) { align-items: flex-start; margin-bottom: .55rem; }
+  .rsvp .choice:has(.opt) input { margin-top: .3rem; }
   .rsvp .choice input { width: 1.15rem; height: 1.15rem; accent-color: var(--rose); flex: none; }
   .rsvp .hp { position: absolute; left: -9999px; }
   .rsvp button[type=submit] { justify-self: stretch; margin-top: .3rem; border-radius: 8px; }
@@ -278,7 +287,9 @@
   .music[aria-pressed=true] { background: var(--rose-deep); }
 
   footer { padding-block: 1rem 17.5rem; }
-  footer .sig { font-family: var(--script); font-size: 2.5rem; line-height: 1.2; color: var(--rose); margin: 0 0 .3rem; }
+  footer .sig { font-family: var(--script); font-size: clamp(2.3rem, 10.5vw, 2.9rem); line-height: 1.15; color: var(--rose); margin: 0 0 .3rem; }
+  footer .sig span { display: block; white-space: nowrap; }
+  footer .sig .and { font-family: var(--display); font-style: italic; font-size: 1.15rem; color: var(--muted); margin: .1rem 0; }
   footer p { margin: 0; color: var(--muted); }
   @media (min-width: 600px) { :root { --vine-w: 30px; } }
 </style>
@@ -289,8 +300,8 @@
   <div class="leaf l" aria-hidden="true"></div>
   <div class="leaf r" aria-hidden="true"></div>
   <span class="sp c1" aria-hidden="true"></span>
-  <p class="who">The Wedding<br>of<br><span class="nw">Sai Karteek and Mahisa</span></p>
-  <video class="intro" id="intro" src="media/art/opening-v6.mp4" poster="media/art/opening-v6-poster.jpg" muted playsinline preload="auto" aria-hidden="true"></video>
+  <p class="who"><span class="kicker">The Wedding of</span><span class="nm">Sai Karteek</span><span class="and">and</span><span class="nm">Mahisa Sanofer</span></p>
+  <video class="intro" id="intro" src="media/art/opening-v7.mp4" poster="media/art/opening-v7-poster.jpg" muted playsinline preload="auto" aria-hidden="true"></video>
   <button class="seal" id="seal" type="button">Tap to open</button>
 </div>
 
@@ -303,7 +314,7 @@
     <div class="crest"><svg viewBox="-100 -100 200 200" fill="none" stroke="currentColor" stroke-width=".6" aria-hidden="true"><defs><path id="pt" d="M0-40C7-55 7-68 0-82C-7-68-7-55 0-40Z"/><path id="pt2" d="M0-14C6-22 6-32 0-40C-6-32-6-22 0-14Z"/></defs><use href='#pt' transform='rotate(0)'/><use href='#pt' transform='rotate(15)'/><use href='#pt' transform='rotate(30)'/><use href='#pt' transform='rotate(45)'/><use href='#pt' transform='rotate(60)'/><use href='#pt' transform='rotate(75)'/><use href='#pt' transform='rotate(90)'/><use href='#pt' transform='rotate(105)'/><use href='#pt' transform='rotate(120)'/><use href='#pt' transform='rotate(135)'/><use href='#pt' transform='rotate(150)'/><use href='#pt' transform='rotate(165)'/><use href='#pt' transform='rotate(180)'/><use href='#pt' transform='rotate(195)'/><use href='#pt' transform='rotate(210)'/><use href='#pt' transform='rotate(225)'/><use href='#pt' transform='rotate(240)'/><use href='#pt' transform='rotate(255)'/><use href='#pt' transform='rotate(270)'/><use href='#pt' transform='rotate(285)'/><use href='#pt' transform='rotate(300)'/><use href='#pt' transform='rotate(315)'/><use href='#pt' transform='rotate(330)'/><use href='#pt' transform='rotate(345)'/><use href='#pt2' transform='rotate(15)'/><use href='#pt2' transform='rotate(45)'/><use href='#pt2' transform='rotate(75)'/><use href='#pt2' transform='rotate(105)'/><use href='#pt2' transform='rotate(135)'/><use href='#pt2' transform='rotate(165)'/><use href='#pt2' transform='rotate(195)'/><use href='#pt2' transform='rotate(225)'/><use href='#pt2' transform='rotate(255)'/><use href='#pt2' transform='rotate(285)'/><use href='#pt2' transform='rotate(315)'/><use href='#pt2' transform='rotate(345)'/><circle cx='88.0' cy='0.0' r='1.6' fill='currentColor'/><circle cx='85.0' cy='22.8' r='1.6' fill='currentColor'/><circle cx='76.2' cy='44.0' r='1.6' fill='currentColor'/><circle cx='62.2' cy='62.2' r='1.6' fill='currentColor'/><circle cx='44.0' cy='76.2' r='1.6' fill='currentColor'/><circle cx='22.8' cy='85.0' r='1.6' fill='currentColor'/><circle cx='0.0' cy='88.0' r='1.6' fill='currentColor'/><circle cx='-22.8' cy='85.0' r='1.6' fill='currentColor'/><circle cx='-44.0' cy='76.2' r='1.6' fill='currentColor'/><circle cx='-62.2' cy='62.2' r='1.6' fill='currentColor'/><circle cx='-76.2' cy='44.0' r='1.6' fill='currentColor'/><circle cx='-85.0' cy='22.8' r='1.6' fill='currentColor'/><circle cx='-88.0' cy='0.0' r='1.6' fill='currentColor'/><circle cx='-85.0' cy='-22.8' r='1.6' fill='currentColor'/><circle cx='-76.2' cy='-44.0' r='1.6' fill='currentColor'/><circle cx='-62.2' cy='-62.2' r='1.6' fill='currentColor'/><circle cx='-44.0' cy='-76.2' r='1.6' fill='currentColor'/><circle cx='-22.8' cy='-85.0' r='1.6' fill='currentColor'/><circle cx='-0.0' cy='-88.0' r='1.6' fill='currentColor'/><circle cx='22.8' cy='-85.0' r='1.6' fill='currentColor'/><circle cx='44.0' cy='-76.2' r='1.6' fill='currentColor'/><circle cx='62.2' cy='-62.2' r='1.6' fill='currentColor'/><circle cx='76.2' cy='-44.0' r='1.6' fill='currentColor'/><circle cx='85.0' cy='-22.8' r='1.6' fill='currentColor'/><circle r="96"/><circle r="92"/><circle r="40"/><circle r="14"/><circle r="5" fill="currentColor"/></svg></div>
   <div class="hero-text">
     <p class="invite">Together with our families, we invite you to the wedding of</p>
-    <h1 class="names"><span>Sai Karteek</span><span class="amp">and</span><span>Mahisa</span></h1>
+    <h1 class="names"><span>Sai Karteek</span><span class="amp">and</span><span>Mahisa Sanofer</span></h1>
   </div>
   </div>
 </header>
@@ -343,7 +354,7 @@
       <p>Along the way, our worlds have come together too, bringing two cultures, different traditions, and both our families into one big part of our story.</p>
       <p>And now, those same two college kids are getting married! It's still a little surreal, but we couldn't be more excited for what's ahead. We can't wait to celebrate with all our favourite people.</p>
       <p>Here's to everything we've been and everything we're yet to become.</p>
-      <p class="byline">Sai Karteek &amp; Mahisa</p>
+      <p class="byline">Sai Karteek &amp; Mahisa Sanofer</p>
     </div>
   </section>
 
@@ -365,7 +376,7 @@
           <h3>Reception</h3>
           <p class="time">7:00 PM</p>
           <p>Palm Beach Hotel, Visakhapatnam</p>
-          <a class="cal" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Sai+Karteek+%26+Mahisa+%E2%80%93+Reception&dates=20261218T133000Z/20261218T163000Z&location=Palm+Beach+Hotel,+Visakhapatnam&details=Wedding+reception+of+Sai+Karteek+and+Mahisa">Add the reception to your calendar</a>
+          <a class="cal" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Sai+Karteek+%26+Mahisa+Sanofer+%E2%80%93+Reception&dates=20261218T133000Z/20261218T163000Z&location=Palm+Beach+Hotel,+Visakhapatnam&details=Wedding+reception+of+Sai+Karteek+and+Mahisa+Sanofer">Add the reception to your calendar</a>
         </article>
         <article class="day morning">
           <p class="date">Saturday, 19 December 2026</p>
@@ -373,14 +384,14 @@
           <p class="time">4:30 AM</p>
           <p>Palm Beach Hotel, Visakhapatnam</p>
           <p class="note">This is early Saturday morning, the night of the reception.</p>
-          <a class="cal" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Sai+Karteek+%26+Mahisa+%E2%80%93+Muhurtham&dates=20261218T230000Z/20261219T010000Z&location=Palm+Beach+Hotel,+Visakhapatnam&details=Wedding+ceremony+of+Sai+Karteek+and+Mahisa">Add the Muhurtham to your calendar</a>
+          <a class="cal" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Sai+Karteek+%26+Mahisa+Sanofer+%E2%80%93+Muhurtham&dates=20261218T230000Z/20261219T010000Z&location=Palm+Beach+Hotel,+Visakhapatnam&details=Wedding+ceremony+of+Sai+Karteek+and+Mahisa+Sanofer">Add the Muhurtham to your calendar</a>
         </article>
         <article class="day">
           <p class="date">Sunday, 27 December 2026</p>
-          <h3>Tiruppur Reception</h3>
+          <h3>Reception in Tiruppur</h3>
           <p class="time">11:00 AM</p>
           <p>Poppys Vista Hotel, Tiruppur</p>
-          <a class="cal" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Sai+Karteek+%26+Mahisa+%E2%80%93+Tiruppur+Reception&dates=20261227T053000Z/20261227T083000Z&location=Poppys+Vista+Hotel,+7%2F27+Avinashi+Road,+Thirumuruganpoondi,+Tiruppur&details=Wedding+reception+of+Sai+Karteek+and+Mahisa">Add the Tiruppur reception to your calendar</a>
+          <a class="cal" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Sai+Karteek+%26+Mahisa+Sanofer+%E2%80%93+Tiruppur+Reception&dates=20261227T053000Z/20261227T083000Z&location=Poppys+Vista+Hotel,+7%2F27+Avinashi+Road,+Thirumuruganpoondi,+Tiruppur&details=Wedding+reception+of+Sai+Karteek+and+Mahisa+Sanofer">Add the Tiruppur reception to your calendar</a>
         </article>
       </div>
     </div>
@@ -443,9 +454,9 @@
         </div>
         <fieldset>
           <legend>Which events?</legend>
-          <label class="choice"><input type="checkbox" name="events" value="Reception" checked> Reception, Fri 7:00 PM</label>
-          <label class="choice"><input type="checkbox" name="events" value="Muhurtham" checked> Muhurtham, Sat 4:30 AM</label>
-          <label class="choice"><input type="checkbox" name="tiruppur" value="Yes"> Tiruppur Reception, Sun 27 Dec 11:00 AM</label>
+          <label class="choice"><input type="checkbox" name="events" value="Reception" checked> <span class="opt">Reception<small>Visakhapatnam, Fri 18 Dec, 7:00 PM</small></span></label>
+          <label class="choice"><input type="checkbox" name="events" value="Muhurtham" checked> <span class="opt">Muhurtham<small>Visakhapatnam, Sat 19 Dec, 4:30 AM</small></span></label>
+          <label class="choice"><input type="checkbox" name="tiruppur" value="Yes"> <span class="opt">Reception in Tiruppur<small>Tiruppur, Sun 27 Dec, 11:00 AM</small></span></label>
         </fieldset>
         <fieldset id="f-stay">
           <legend>Do you need accommodation?</legend>
@@ -466,7 +477,7 @@
 </main>
 
 <footer>
-  <p class="sig">Sai Karteek and Mahisa</p>
+  <p class="sig"><span>Sai Karteek</span><span class="and">and</span><span>Mahisa Sanofer</span></p>
 </footer>
 </div>
 

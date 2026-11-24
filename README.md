@@ -1,4 +1,4 @@
-# Sai Karteek & Mahisa wedding website
+# Sai Karteek & Mahisa Sanofer wedding website
 
 A single-page wedding site, hosted free on GitHub Pages.
 
