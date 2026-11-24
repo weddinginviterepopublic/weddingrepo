@@ -4,7 +4,7 @@
 // To update an existing deployment without changing its URL:
 // Deploy -> Manage deployments -> pencil icon -> Version: New version -> Deploy.
 
-var HEADERS = ["Received", "Name", "Phone or email", "Attending", "Guests", "Events", "Message", "Accommodation"];
+var HEADERS = ["Received", "Name", "Phone or email", "Attending", "Guests", "Events", "Message", "Accommodation", "Tiruppur Reception"];
 
 function doPost(e) {
   var lock = LockService.getScriptLock();
@@ -17,10 +17,14 @@ function doPost(e) {
     var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0];
     if (sheet.getLastRow() === 0) {
       sheet.appendRow(HEADERS);
-    } else if (sheet.getRange(1, HEADERS.length).getValue() === "") {
-      sheet.getRange(1, HEADERS.length).setValue(HEADERS[HEADERS.length - 1]);   // add the new column header to an existing sheet
+    } else {
+      var top = sheet.getRange(1, 1, 1, HEADERS.length);                      // fill in any column headers added since the sheet was made
+      var have = top.getValues()[0];
+      if (have.some(function (v, i) { return v === "" && HEADERS[i]; })) {
+        top.setValues([have.map(function (v, i) { return v === "" ? HEADERS[i] : v; })]);
+      }
     }
-    sheet.appendRow([new Date(), p.name, p.contact || "", p.attending, p.guests || "", p.events || "", p.message || "", p.accommodation || ""]);
+    sheet.appendRow([new Date(), p.name, p.contact || "", p.attending, p.guests || "", p.events || "", p.message || "", p.accommodation || "", p.tiruppur || ""]);
     return reply({ ok: true });
   } finally {
     lock.releaseLock();
