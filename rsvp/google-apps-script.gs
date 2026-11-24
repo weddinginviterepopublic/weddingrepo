@@ -1,8 +1,10 @@
 // RSVP receiver for the wedding site.
 // Paste into the Google Sheet: Extensions -> Apps Script, then deploy as a
 // web app (Execute as: Me, Who has access: Anyone). See README for steps.
+// To update an existing deployment without changing its URL:
+// Deploy -> Manage deployments -> pencil icon -> Version: New version -> Deploy.
 
-var HEADERS = ["Received", "Name", "Phone or email", "Attending", "Guests", "Events", "Message"];
+var HEADERS = ["Received", "Name", "Phone or email", "Attending", "Guests", "Events", "Message", "Accommodation"];
 
 function doPost(e) {
   var lock = LockService.getScriptLock();
@@ -13,8 +15,12 @@ function doPost(e) {
       return reply({ ok: false, error: "Name and attendance are required." });
     }
     var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0];
-    if (sheet.getLastRow() === 0) sheet.appendRow(HEADERS);
-    sheet.appendRow([new Date(), p.name, p.contact || "", p.attending, p.guests || "", p.events || "", p.message || ""]);
+    if (sheet.getLastRow() === 0) {
+      sheet.appendRow(HEADERS);
+    } else if (sheet.getRange(1, HEADERS.length).getValue() === "") {
+      sheet.getRange(1, HEADERS.length).setValue(HEADERS[HEADERS.length - 1]);   // add the new column header to an existing sheet
+    }
+    sheet.appendRow([new Date(), p.name, p.contact || "", p.attending, p.guests || "", p.events || "", p.message || "", p.accommodation || ""]);
     return reply({ ok: true });
   } finally {
     lock.releaseLock();

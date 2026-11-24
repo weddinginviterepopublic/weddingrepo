@@ -432,6 +432,11 @@
           <label class="choice"><input type="checkbox" name="events" value="Reception" checked> Reception, Fri 7:00 PM</label>
           <label class="choice"><input type="checkbox" name="events" value="Muhurtham" checked> Muhurtham, Sat 4:30 AM</label>
         </fieldset>
+        <fieldset id="f-stay">
+          <legend>Do you need accommodation?</legend>
+          <label class="choice"><input type="radio" name="accommodation" value="Yes" required> Yes, please arrange a stay</label>
+          <label class="choice"><input type="radio" name="accommodation" value="No"> No, I have my own stay</label>
+        </fieldset>
         <div>
           <label for="f-message">A note for us (optional)</label>
           <textarea id="f-message" name="message" rows="3"></textarea>
@@ -742,6 +747,13 @@
     var form = document.getElementById("rsvp-form"), status = document.getElementById("rsvp-status");
     if (!CFG.rsvpUrl) return;
     form.hidden = false;
+    var stay = document.getElementById("f-stay");
+    form.addEventListener("change", function (e) {
+      if (e.target.name !== "attending") return;
+      var coming = e.target.value === "Yes";
+      stay.hidden = !coming;
+      stay.querySelectorAll("input").forEach(function (i) { i.required = coming && i.value === "Yes"; if (!coming) i.checked = false; });
+    });
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       var data = new FormData(form);
@@ -752,6 +764,7 @@
       body.set("attending", data.get("attending"));
       body.set("guests", data.get("attending") === "Yes" ? data.get("guests") : "0");
       body.set("events", data.get("attending") === "Yes" ? data.getAll("events").join(", ") : "");
+      body.set("accommodation", data.get("attending") === "Yes" ? (data.get("accommodation") || "") : "");
       body.set("message", data.get("message").trim());
       var btn = form.querySelector("button[type=submit]");
       btn.disabled = true; status.className = "status"; status.textContent = "Sending your reply";

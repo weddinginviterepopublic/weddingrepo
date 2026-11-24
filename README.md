@@ -26,5 +26,9 @@ happy for guests to see and save.
 
 Each reply becomes a row in the sheet. File -> Download gives you Excel.
 
+To update the script later without changing its URL: paste the new code,
+Save, then Deploy -> Manage deployments -> pencil icon -> Version: New version
+-> Deploy.
+
 ## Editing text
 All wording is in `index.html`.
